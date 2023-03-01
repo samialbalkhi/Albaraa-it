@@ -127,7 +127,7 @@
                             <td><img src="storage/{{ $items->image }}" width="100" height="100"></td>
 
 
-                            <td><a href="" type="submit" class="btn btn-success">update</a>
+                            <td><a href="{{route('edit_product',$items->id)}}" type="submit" class="btn btn-success">update</a>
                                 <a href="" type="submit" class="btn btn-danger">delete</a>
                             </td>
                         </tr>

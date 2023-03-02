@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Prodact;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Requests\dashbord\product_request;
+
 
 class ProductController extends Controller
 {
@@ -17,7 +20,7 @@ class ProductController extends Controller
          $prodact_brand= Prodact::with('brands:id,name')->get();
             return view('dashbord.addproduct',compact('brand','prodact_brand'));
     }
-    public function create_product(Request $request)
+    public function create_product(product_request $request)
     {
         $path=$request->image->store('images','public');
         Prodact::create([

@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //////////          Product       ///////////////////////// 
-Route::get('/view_product',[ProductController::class,"view_product"])->name('view_product')->middleware('auth:admin');
+Route::get('/view_product',[ProductController::class,"view_product"])->name('view_product');
 Route::post('create_product',[ProductController::class,"create_product"])->name('create_product');
 Route::get('/edit_product/{id}',[ProductController::class,"edit_product"])->name('edit_product');
 Route::post('/update_product/{id}',[ProductController::class,"update_product"])->name('update_product');
@@ -50,8 +50,9 @@ Route::get('/delete_section/{id}',[SectionController::class,"delete_section"])->
 ///////////////////////////   login  admin            ////////////////////////
 
 Route::get('/login_admin',[LoginController::class,"login_admin"]);
+Route::post('chek_login',[LoginController::class,"chek_login"])->name('chek_login');
 
 
 
 
-Route::get('/regester',[LoginController::class,"regester"]);
+Route::get('/regester',[LoginController::class,"regester"])->name('regester');

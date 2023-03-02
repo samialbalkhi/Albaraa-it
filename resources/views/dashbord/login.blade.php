@@ -14,7 +14,7 @@
           
             <div class="card">
                 <div class="card-body">
-                <form method="POST" action="">
+                <form method="POST" action="{{route('chek_login')}}">
                     @csrf
                     <!-- Email input -->
     <div class="form-outline mb-4">
@@ -35,7 +35,7 @@
   
     <!-- Register buttons -->
     <div class="text-center">
-      <p>Not a member? <a href="">Register</a></p>
+      <p>Not a member? <a href="{{route('regester')}}">Register</a></p>
       <p>or sign up with:</p>
       <button type="button" class="btn btn-link btn-floating mx-1">
           <i class="fab fa-facebook-f"></i>

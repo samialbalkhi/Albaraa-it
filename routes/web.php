@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\dashpord\BrandController;
 use App\Http\Controllers\dashpord\LoginController;
 use App\Http\Controllers\dashpord\ProductController;
 use App\Http\Controllers\dashpord\SectionController;
-use Illuminate\Auth\Events\Login;
+use App\Http\Controllers\Declarativesite\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,37 +23,55 @@ use Illuminate\Auth\Events\Login;
 Route::get('/', function () {
     return view('welcome');
 });
-//////////          Product       ///////////////////////// 
-Route::get('/view_product',[ProductController::class,"view_product"])->name('view_product');
-Route::post('create_product',[ProductController::class,"create_product"])->name('create_product');
-Route::get('/edit_product/{id}',[ProductController::class,"edit_product"])->name('edit_product');
-Route::post('/update_product/{id}',[ProductController::class,"update_product"])->name('update_product');
-
-////////////////////    Brands               /////////////////////
-
-Route::get('/view_brandes',[BrandController::class,"view_brandes"])->name('add_brandes');
-Route::post('/create_brand',[BrandController::class,"create_brand"])->name('create_brand');
-Route::get('/edit_brand/{id}',[BrandController::class,"edit_brand"])->name('edit_brand');
-Route::post('/update_brand/{id}',[BrandController::class,"update_brand"])->name('update_brand');
-Route::get('/delete_brand/{id}',[BrandController::class,"delete_brand"])->name('delete_brand');
 
 
-/////////     section           //////////////
+Route::middleware(['auth:admin'])->group(function () {
 
-Route::get('/view_section',[SectionController::class,"view_section"])->name('view_section');
-Route::post('/createsection',[SectionController::class,"createsection"])->name('create_section');
-Route::get('/edit_section/{id}',[SectionController::class,"edit_section"])->name('edit_section');
-Route::post('/update_section/{id}',[SectionController::class,"update"])->name('update_section');
-Route::get('/delete_section/{id}',[SectionController::class,"delete_section"])->name('delete_section');
+    //////////          Product       ///////////////////////// 
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/view_product', "view_product")->name('view_product');
+        Route::post('create_product', "create_product")->name('create_product');
+        Route::get('/edit_product/{id}', "edit_product")->name('edit_product');
+        Route::post('/update_product/{id}', "update_product")->name('update_product');
+        Route::get('/delete_product/{id}', "delete_product")->name('delete_product');
+    });
 
 
+
+    ////////////////////    Brands               /////////////////////
+
+ Route::controller(BrandController::class)->group(function(){
+    Route::get('/view_brandes',  "view_brandes")->name('add_brandes');
+    Route::post('/create_brand',  "create_brand")->name('create_brand');
+    Route::get('/edit_brand/{id}',  "edit_brand")->name('edit_brand');
+    Route::post('/update_brand/{id}', "update_brand")->name('update_brand');
+    Route::get('/delete_brand/{id}',  "delete_brand")->name('delete_brand');
+    });
+
+    
+
+
+    /////////     section           //////////////
+    Route::controller(SectionController::class)->group(function(){
+        Route::get('/view_section',  "view_section")->name('view_section');
+        Route::post('/createsection', "createsection")->name('create_section');
+        Route::get('/edit_section/{id}', "edit_section")->name('edit_section');
+        Route::post('/update_section/{id}', "update")->name('update_section');
+        Route::get('/delete_section/{id}',  "delete_section")->name('delete_section');
+    });
+    
+});
 
 ///////////////////////////   login  admin            ////////////////////////
+    Route::controller(LoginController::class)->group(function(){
+        Route::get('/login_admin', "login_admin")->name('login');
+        Route::post('chek_login',  "chek_login")->name('chek_login');
+    });
 
-Route::get('/login_admin',[LoginController::class,"login_admin"]);
-Route::post('chek_login',[LoginController::class,"chek_login"])->name('chek_login');
 
+    /////////////////   home page         ///////////////////////////
 
-
-
-Route::get('/regester',[LoginController::class,"regester"])->name('regester');
+        Route::controller(HomeController::class)->group(function(){
+            Route::get('/home', "view_home")->name('home');
+        });

@@ -28,21 +28,21 @@
                     @csrf
                     
                     <div class="mb-3 mt-3 ">
-                        <label for="file" class="form-label">upload image prodact</label>
+                        <label for="file" class="form-label">Update upload image prodact</label>
                         <input type="file" class="form-control" id="image" name="image" value="{{$prodact->image}}">
                         
                         <small id="image_erorr" class="form-text text-danger"></small>
                     </div>
                     
                     <div class="mb-3 mt-3">
-                        <label for="text" class="form-label">Name Prodact</label>
+                        <label for="text" class="form-label">Update Name Prodact</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{$prodact->name}}">
                         
                         <small id="title_erorr" class="form-text text-danger"></small>
                     </div>
                     
                     <div class="mb-1 mt-1">
-                        <label for="text" class="form-label">Title Prodact</label>
+                        <label for="text" class="form-label">Update Title Prodact</label>
                         <input type="text" class="form-control" id="title" name="title" value="{{$prodact->title}}">
                         
                         <small id="title_erorr" class="form-text text-danger"></small>
@@ -50,14 +50,14 @@
                     
                     
                     <div class="mb-3 mt-3">
-                        <label for="text" class="form-label">List Of Prodact</label>
-                        <input type="text" class="form-control" id="list" name="list" value="{{$prodact->list_of_details}}">
+                        <label for="text" class="form-label">Update List Of Prodact</label>
+                        <input type="text" class="form-control" id="list" name="list_of_details" value="{{$prodact->list_of_details}}">
                         
                         <small id="list_erorr" class="form-text text-danger"></small>
                     </div>
 
                     <div class="mb-3 mt-3">
-                        <label for="price" class="form-label">price</label>
+                        <label for="price" class="form-label">Update Price</label>
                         <input type="text" class="form-control" id="price" name="price" value="{{$prodact->price}}">
                         
                         <small id="price" class="form-text text-danger"></small>
@@ -65,7 +65,7 @@
 
 
                     <div class="mb-3 mt-3">
-                        <label for="discount" class="form-label">discount</label>
+                        <label for="discount" class="form-label">Update Discount</label>
                         <input type="text" class="form-control" id="discount" name="discount" value="{{$prodact->discount}}">
                         
                         <small id="discount" class="form-text text-danger"></small>
@@ -74,12 +74,15 @@
 
                     <div class="mb-3 mt-3"> 
 
-                        <label for="">Add Brands</label>
+                        <label for="">Update Brands</label>
                     <select name="brand_id" class="form-select" aria-label="Default select example">
-                       
-                        <option value="{{$prodact->brands->id}}">{{$prodact->brands->name}}</option>
-                        
+                    
+                        @foreach ($brand as $items )
+                            
+                        <option value="{{$items->id}}">{{$items->name}}</option>
 
+                        @endforeach
+                       
                     </select>     
                     </div>
 

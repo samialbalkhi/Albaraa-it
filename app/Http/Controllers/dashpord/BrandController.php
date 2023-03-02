@@ -35,8 +35,9 @@ class BrandController extends Controller
     {
 
         $brand=Brand::with('section:id,name')->find($id);
+        $section=Section::all();
             
-        return view('dashbord.editbrand',compact('brand'));
+        return view('dashbord.editbrand',compact('brand','section'));
     }
     public function update_brand(Request $request, $id)
     {
@@ -54,6 +55,5 @@ class BrandController extends Controller
         return redirect()->back()->with(['success'=>'deleted Brand !....']);
 
     }
-    
      
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\dashbord;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class product_request extends FormRequest
+class Product_request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

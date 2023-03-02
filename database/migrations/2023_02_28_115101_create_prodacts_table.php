@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('list_of_details');
             $table->string('image');
             $table->integer('price');
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->foreignIdFor(Brand::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

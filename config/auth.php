@@ -1,5 +1,7 @@
 <?php
 
+
+
 return [
 
     /*
@@ -40,15 +42,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    ],
+   
 
     'admin' => [
-        'web' => [
+        
             'driver' => 'session',
             'provider' => 'admins',
         ],
+    
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -74,7 +76,7 @@ return [
 
             'admins' => [
                 'driver' => 'eloquent',
-                'model' => App\Models\Admin::class,
+                'model' =>App\Models\Admin::class,
             ],
         
 

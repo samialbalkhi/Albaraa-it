@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-use App\Http\Requests\dashbord\product_request;
+use App\Http\Requests\dashbord\Product_request;
 
 
 class ProductController extends Controller
@@ -18,19 +18,22 @@ class ProductController extends Controller
     {
          $brand=Brand::all();
          $prodact_brand= Prodact::with('brands:id,name')->get();
+         
             return view('dashbord.addproduct',compact('brand','prodact_brand'));
     }
-    public function create_product(product_request $request)
+    public function create_product(Product_request $request)
     {
+        
         $path=$request->image->store('images','public');
+        $total=$request->price - $request->discount ;
         Prodact::create([
 
                 'image'=>$path,
                 'name'=>$request->name,
                 'title'=>$request->title,
-                'list_of_details'=>$request->list,
+                'list_of_details'=>$request->list_of_details,
                 'price'=>$request->price,
-                'discount'=>$request->discount,
+                'discount'=>$total,
                 'brand_id'=>$request->brand_id,
         ]);
         return redirect()->back()->with(['success'=>'insted product ']);
@@ -38,7 +41,8 @@ class ProductController extends Controller
     public function edit_product($id)
     {
         $prodact= Prodact::with('brands:id,name')->find($id);
-        return view('dashbord.editproduct',compact('prodact'));
+        $brand=Brand::all();
+        return view('dashbord.editproduct',compact('prodact','brand'));
     }
     public function update_product(Request $request, $id)
     {
@@ -56,7 +60,7 @@ class ProductController extends Controller
             'image'=>$path,
             'name'=>$request->name,
             'title'=>$request->title,
-            'list_of_details'=>$request->list,
+            'list_of_details'=>$request->list_of_details,
             'price'=>$request->price,
             'discount'=>$request->discount,
             'brand_id'=>$request->brand_id,
@@ -65,6 +69,15 @@ class ProductController extends Controller
 
         return redirect()->back()->with(['success'=>'Update product ']);
 
-    }   
+    }   public function delete_product($id)
+    {
+        Prodact::destroy($id);
+        return redirect()->back()->with(['success'=>'deleted product ']);
+    }
+    public function respons()
+    {
+        return Prodact::with('brands:id,name')->get();
+
+    }
     
 }

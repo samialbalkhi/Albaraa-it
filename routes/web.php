@@ -74,4 +74,6 @@ Route::middleware(['auth:admin'])->group(function () {
 
         Route::controller(HomeController::class)->group(function(){
             Route::get('/home', "view_home")->name('home');
+            Route::get('/product',"view_product")->name('view_product');
+            Route::get('/response','response');
         });

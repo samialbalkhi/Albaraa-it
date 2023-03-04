@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
 use App\Http\Controllers\dashpord\BrandController;
 use App\Http\Controllers\dashpord\LoginController;
+use App\Http\Controllers\dashpord\ProfileConroller;
 use App\Http\Controllers\dashpord\ProductController;
 use App\Http\Controllers\dashpord\SectionController;
 use App\Http\Controllers\Declarativesite\HomeController;
@@ -60,6 +61,14 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('/update_section/{id}', "update")->name('update_section');
         Route::get('/delete_section/{id}',  "delete_section")->name('delete_section');
     });
+
+
+      /////////////////////  About Us                 ///////////////////////////
+      Route::controller(ProfileConroller::class)->group(function(){
+        Route::get('/about_us', "view_data")->name('about_us');
+        Route::post('create_profile', "create_profile")->name('create_profile');
+        Route::get('/edit_profile/{id}', "edit_profile")->name('edit_profile');
+    });
     
 });
 
@@ -69,6 +78,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('chek_login',  "chek_login")->name('chek_login');
     });
 
+
+  
 
     /////////////////   home page         ///////////////////////////
 

@@ -15,6 +15,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('view_section')}}">Add Section</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('about_us')}}">profile</a>
+          </li>
       </ul>
     </div>
   </nav>

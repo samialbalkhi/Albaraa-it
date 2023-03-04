@@ -25,7 +25,7 @@
             margin: 20px;
         }
 
-        .active{
+        .active {
             text-decoration: none;
             padding: 15px 25px;
             font-size: 24px;
@@ -48,14 +48,17 @@
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
-        .barand-btn{
+
+        .barand-btn {
             cursor: pointer;
             text-decoration: none;
         }
-        .barand-btn:hover li{
+
+        .barand-btn:hover li {
             background-color: #3e8e41;
         }
-        .brand{
+
+        .brand {
             padding: 15px 25px;
             font-size: 24px;
             text-align: center;
@@ -67,8 +70,9 @@
             border: none;
             border-radius: 15px;
         }
-        .brand:active{
-            
+
+        .brand:active {
+
             background-color: #3e8e41;
             box-shadow: 0 5px #666;
             transform: translateY(4px);
@@ -104,6 +108,7 @@
                         <ul class="list-group" id="sidebar" style="margin-top: 50px">
                             @foreach ($sections as $listOfSection)
                                 @foreach ($listOfSection->brands as $brand)
+                                    <li class="list-group-item active">{{$brand->name}}</li>
                                 @endforeach
                             @endforeach
                         </ul>
@@ -166,8 +171,8 @@
 
                             for (let i = 0; i < brands.length; i++) {
 
-                                let li = document.createElement('button')
-                                li.className = "brand";
+                                let li = document.createElement('li')
+                                li.className = "list-group-item active";
                                 li.innerHTML = brands[i].name;
 
 
@@ -186,7 +191,7 @@
                 });
 
             })
-            $(".brand").on('click', function() {
+            $(".active").on('click', function() {
                 console.log("name");
             })
         });

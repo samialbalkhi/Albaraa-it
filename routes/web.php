@@ -34,7 +34,7 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('create_product', "create_product")->name('create_product');
         Route::get('/edit_product/{id}', "edit_product")->name('edit_product');
         Route::post('/update_product/{id}', "update_product")->name('update_product');
-        Route::get('/delete_product/{id}', "delete_product")->name('delete_product');
+        Route::get('/delete_product/{id}', "delete_product")->name('delete_product');   
     });
 
 
@@ -75,5 +75,6 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::controller(HomeController::class)->group(function(){
             Route::get('/home', "view_home")->name('home');
             Route::get('/product',"view_product")->name('view_product');
-            Route::get('/response','response');
+            Route::post('/section_brand','section_brand')->name('section_brand');
+            Route::get('/About_Us','About_Us')->name('About_Us');
         });

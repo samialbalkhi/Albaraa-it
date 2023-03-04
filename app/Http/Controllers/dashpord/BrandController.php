@@ -15,7 +15,7 @@ class BrandController extends Controller
     public function view_brandes()
     {
          $Section= Section::all();
-         $brand_section=  Brand::with('section:id,name')->get();
+         $brand_section= Brand::with('section:id,name')->get();
 
         return view('dashbord.addbrandes',compact('Section','brand_section'));
     }

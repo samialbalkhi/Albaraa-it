@@ -19,13 +19,23 @@ class HomeController extends Controller
     {
         $Section=Section::all();
        $Prodact=Prodact::all();
-       $brand_section= Section::with('brands:name,id,section_id')->get();
+       $sections= Section::with('brands:name,id,section_id')->get();
    
-        return view('Declarativesite.prodact',compact('Section','Prodact','brand_section'));
+        return view('Declarativesite.prodact',compact('Section','Prodact','sections'));
     }
-    public function response()
+    public function section_brand(Request $request)
     {
-        return Section::with('brands:name,id,section_id')->get();
+     
+       return  Brand::where('section_id',$request->section_id)->get();
+    
+            }
+
+            public function About_Us()
+            {
+                return view('Declarativesite.AboutUs');
+            }
+
     }
 
-}
+
+// }

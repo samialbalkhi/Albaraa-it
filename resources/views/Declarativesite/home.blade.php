@@ -48,7 +48,7 @@
             <ul class="list-group" style="width: 25%;">
                 <li class="list-group-item activ">Home</li>
                 <a href="{{route('view_product')}}"> <li class="list-group-item" > Prodact</li></a>
-                <li class="list-group-item">About Us</li>
+                <a href="{{route('About_Us')}}"><li class="list-group-item">About Us</li></a>
             </ul>
           </div>  
         </div>
@@ -84,7 +84,7 @@
                 <div class="card" style="margin-top: 50px">
                     <img src="storage/{{ $items->image }}" class="card-img-top" width="250px" height="250px" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{$items->name}}</h5>
+                        <h5 class="card-title"  style="text-align: center">{{$items->name}}</h5>
                         <p class="card-text">{{$items->title}}</p>
                     </div>
                 </div>

@@ -68,6 +68,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/about_us', "view_data")->name('about_us');
         Route::post('create_profile', "create_profile")->name('create_profile');
         Route::get('/edit_profile/{id}', "edit_profile")->name('edit_profile');
+        Route::post('/update_profile/{id}', "update_profile")->name('update_profile');
+        Route::get('/delete_profile/{id}', "delete_profile")->name('delete_profile');
     });
     
 });

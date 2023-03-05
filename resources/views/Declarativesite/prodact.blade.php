@@ -92,7 +92,7 @@
             <div class="col-sm" style="margin-left:-350px ">
                 <section class="prodact" style="overflow: hidden;width:150%;">
                     <div id="productsData" class="row">
-                   
+
                     </div>
                 </section>
             </div>
@@ -138,7 +138,7 @@
                                   
                                         <div  class="col-sm-3" style="width: 300px">'
                                             <div class="card" style="margin-top: 50px"> 
-                                                <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" >
+                                               <a href="${{route('information_products')}}"> <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
                                                 <div class="card-body">
                                                 <h5 class="card-title">${listOfProducts.name}</h5>
                                             <p class="card-text">${listOfProducts.title }</p>
@@ -149,6 +149,7 @@
 
                                     
                                             })  
+                                       
 
                                             var productcards = document.getElementById('productsData');
 
@@ -158,6 +159,7 @@ productcards.innerHTML=tmp;
 
 
                             });
+
 
                             
                         }
@@ -181,9 +183,7 @@ productcards.innerHTML=tmp;
 
                                 li.className = "list-group-item brandItem";
                                 li.innerHTML = brands[i].name;
-                                // li.style.cssText = 'position:absolute;top:300px;left:300px;width:200px;height:200px;-moz-border-radius:100px;border:1px  solid #ddd;-moz-box-shadow: 0px 0px 8px  #fff;display:none;';
-
-                                // document.getElementById("divInsteadOfDocument.Write").appendChild(li);
+                               
 
                                 ul.append(li);
 
@@ -206,9 +206,7 @@ productcards.innerHTML=tmp;
                 });
 
             })
-            $("#brand").click(function() {
-                console.log("clicked");
-            })
+           
         });
     </script>
 </body>

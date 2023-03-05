@@ -39,7 +39,7 @@ class ProfileConroller extends Controller
     public function edit_profile($id)
     {
         $profail = Profile::find($id);
-        $profail = Profile::select('id','image_profile', 'text_About', 'image', 'text_mission', 'text_vision')->find($id);
+        $profail = Profile::select('id', 'image_profile', 'text_About', 'image', 'text_mission', 'text_vision')->find($id);
 
         return view('dashbord.EditAbuotUs', compact('profail'));
     }
@@ -56,21 +56,23 @@ class ProfileConroller extends Controller
 
         $profail->update([
 
-            'image_profile'=>$path_profile,
-            'text_About'=>$request->text_About,
-            'image'=>$path,
-            'text_mission'=>$request->text_mission,
-            'text_vision'=>$request->text_vision
+            'image_profile' => $path_profile,
+            'text_About' => $request->text_About,
+            'image' => $path,
+            'text_mission' => $request->text_mission,
+            'text_vision' => $request->text_vision
         ]);
 
-        return redirect()->back()->with(['success'=>'Items the profile updated successfully']);
-
+        return redirect()->back()->with(['success' => 'Items the profile updated successfully']);
     }
     public function delete_profile($id)
-    {   
-         Profile::destroy($id);
+    {
+        Profile::destroy($id);
 
-        return redirect()->back()->with(['success'=>'Items the profile deleted successfully']);
-
+        return redirect()->back()->with(['success' => 'Items the profile deleted successfully']);
+    }
+    public function get_profile()
+    {
+        
     }
 }

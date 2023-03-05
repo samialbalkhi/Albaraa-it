@@ -70,6 +70,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/edit_profile/{id}', "edit_profile")->name('edit_profile');
         Route::post('/update_profile/{id}', "update_profile")->name('update_profile');
         Route::get('/delete_profile/{id}', "delete_profile")->name('delete_profile');
+        Route::get('/get_profile', "get_profile")->name('get_profile');
+        
     });
     
 });
@@ -90,4 +92,5 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/product',"view_product")->name('view_product');
             Route::post('/section_brand','section_brand')->name('section_brand');
             Route::get('/About_Us','About_Us')->name('About_Us');
+            Route::get('/brand_products','brand_products')->name('brand_products');
         });

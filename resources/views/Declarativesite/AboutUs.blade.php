@@ -12,10 +12,11 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <style>
-        body{
-            
+        body {
+
             background-color: #e6dcdc;
         }
+
         .container {
             display: inline-flex;
         }
@@ -71,92 +72,57 @@
 </head>
 
 <body>
-    <header class="container">
+    <form action="{{route('get_profile')}}" method="get">
 
-                <div class="left">
+        <header class="container">
 
-                    <ul class="list-group" style="width: 25%;">
-                        <a href="{{ route('home') }}">
-                            <li class="list-group-item activ">Home</li>
-                        </a>
-                        <a href="{{ route('view_product') }}">
-                            <li class="list-group-item"> Prodact</li>
-                        </a>
-                        <a href="{{ route('About_Us') }}">
-                            <li class="list-group-item">About Us</li>
-                        </a>
-                    </ul>
-                </div>
-          
-        <div class="right">
-            <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg" class="d-block w-100" alt="...">
-        </div>
+            <div class="left">
 
-    </header>
-    <section class="container">
-        <div class="left_section">
-            <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="right_section">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
+                <ul class="list-group" style="width: 25%;">
+                    <a href="{{ route('home') }}">
+                        <li class="list-group-item activ">Home</li>
+                    </a>
+                    <a href="{{ route('view_product') }}">
+                        <li class="list-group-item"> Prodact</li>
+                    </a>
+                    <a href="{{ route('About_Us') }}">
+                        <li class="list-group-item">About Us</li>
+                    </a>
+                </ul>
+            </div>
+            @foreach ($profile as $items )
+                
+            @endforeach
+            <div class="right">
+                <img src="storage/{{ $items->image_profile }}" class="card-img-top" width="250px"alt="...">
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
+                    
+            </div>
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
+        </header>
+        <section class="container">
+            <div class="left_section">
+                <img src="storage/{{ $items->image }}" class="card-img-top" width="250px"alt="...">
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
+            </div>
+            <div class="right_section">
+                <h1>About the company</h1>
+                {{$items->text_About}}
+            </div>
+        </section>
+        <footer class="container">
+            <div class="footer_lift">
+                <h1>Our Mission</h1>
+                {{$items->text_mission}}
+            </div>
+            <div class="footer_right">
+                <h1>Our Vision</h1>
+                {{$items->text_vision}}
+                
+    </form>
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
 
-        </div>
-    </section>
-    <footer class="container">
-        <div class="footer_lift">
-            <h1>adssfdghfjdsfdgf</h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum
-        </div>
-        <div class="footer_right">
-            <h1>adssfdghfjdsfdgf</h1>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel est modi, cum hic nesciunt sed accusamus,
-            deserunt eum aliquid animi assumenda voluptate similique qui explicabo minima fuga nostrum quas aliquam.
-            Lorem ipsum dolor
-        </div>
+    </div>
     </footer>
 </body>
 

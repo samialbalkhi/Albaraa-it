@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
     <title>Document</title>
     <style>
         .navbar {
@@ -37,6 +42,7 @@
             border: none;
             border-radius: 15px;
             box-shadow: 0 9px #999;
+
         }
 
         .active:hover {
@@ -44,35 +50,6 @@
         }
 
         .active:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-
-        .barand-btn {
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .barand-btn:hover li {
-            background-color: #3e8e41;
-        }
-
-        .brand {
-            padding: 15px 25px;
-            font-size: 24px;
-            text-align: center;
-            cursor: pointer;
-            outline: none;
-            color: #000;
-            margin-top: 15px;
-
-            border: none;
-            border-radius: 15px;
-        }
-
-        .brand:active {
-
             background-color: #3e8e41;
             box-shadow: 0 5px #666;
             transform: translateY(4px);
@@ -106,30 +83,16 @@
                 <div class="left" id="left" style="width: 30%;margin-left: -100px">
                     <div class="cards">
                         <ul class="list-group" id="sidebar" style="margin-top: 50px">
-                            @foreach ($sections as $listOfSection)
-                                @foreach ($listOfSection->brands as $brand)
-                                    <li class="list-group-item active">{{$brand->name}}</li>
-                                @endforeach
-                            @endforeach
+
+
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-sm" style="margin-left:-350px ">
                 <section class="prodact" style="overflow: hidden;width:150%;">
-                    <div class="row">
-                        @foreach ($Prodact as $items)
-                            <div class="col-sm-3" style="width: 300px">
-                                <div class="card" style="margin-top: 50px">
-                                    <img src="storage/{{ $items->image }}" class="card-img-top" width="250px"
-                                        height="250px" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $items->name }}</h5>
-                                        <p class="card-text">{{ $items->title }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div id="productsData" class="row">
+                   
                     </div>
                 </section>
             </div>
@@ -138,7 +101,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script>
+    <script type="module">
         $(document).ready(function() {
 
             $(".test a").on('click', function() {
@@ -157,10 +120,50 @@
 
                     success: function(response) {
 
+
+
                         function appendSideBar(sidebar, listOfBrands) {
                             document.getElementById("sidebar").innerHTML = '';
                             sidebar.append(fetchBrands(listOfBrands));
                         }
+
+
+                        async function viewProducts(getBrandId) {
+                            axios.get(`http://127.0.0.1:8000/brand_products?brandId=${getBrandId}`).then((response) => {
+                                var tmp='';
+                                    response.data.forEach((listOfProducts)=>{
+                                        tmp+=
+
+                                       `
+                                  
+                                        <div  class="col-sm-3" style="width: 300px">'
+                                            <div class="card" style="margin-top: 50px"> 
+                                                <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" >
+                                                <div class="card-body">
+                                                <h5 class="card-title">${listOfProducts.name}</h5>
+                                            <p class="card-text">${listOfProducts.title }</p>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        `
+
+                                    
+                                            })  
+
+                                            var productcards = document.getElementById('productsData');
+
+productcards.innerHTML='';
+productcards.innerHTML=tmp;
+
+
+
+                            });
+
+                            
+                        }
+
+
+
 
                         function fetchBrands(brands) {
 
@@ -172,11 +175,23 @@
                             for (let i = 0; i < brands.length; i++) {
 
                                 let li = document.createElement('li')
-                                li.className = "list-group-item active";
-                                li.innerHTML = brands[i].name;
 
+                                li.setAttribute('brandId', brands[i].id)
+                                li.setAttribute('id', 'brand')
+
+                                li.className = "list-group-item brandItem";
+                                li.innerHTML = brands[i].name;
+                                // li.style.cssText = 'position:absolute;top:300px;left:300px;width:200px;height:200px;-moz-border-radius:100px;border:1px  solid #ddd;-moz-box-shadow: 0px 0px 8px  #fff;display:none;';
+
+                                // document.getElementById("divInsteadOfDocument.Write").appendChild(li);
 
                                 ul.append(li);
+
+                                li.onclick = function() {
+                                    var brandId = brands[i].id;
+
+                                    viewProducts(brandId);
+                                }
                             }
 
                             return ul;
@@ -191,8 +206,8 @@
                 });
 
             })
-            $(".active").on('click', function() {
-                console.log("name");
+            $("#brand").click(function() {
+                console.log("clicked");
             })
         });
     </script>

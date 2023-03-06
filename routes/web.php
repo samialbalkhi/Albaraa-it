@@ -90,8 +90,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::controller(HomeController::class)->group(function(){
             Route::get('/home', "view_home")->name('home');
             Route::get('/product',"view_product")->name('view_product');
-            Route::post('/section_brand','section_brand')->name('section_brand');
+            Route::get('/section_brand','section_brand')->name('section_brand');
             Route::get('/About_Us','About_Us')->name('About_Us');
             Route::get('/brand_products','brand_products')->name('brand_products');
-            Route::get('/information_products','information_products')->name('information_products');
+            Route::get('/information_products/{id}','information_products')->name('information_products');
         });

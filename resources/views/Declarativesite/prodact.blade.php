@@ -69,7 +69,8 @@
                     <ul class="navbar-nav " id="btn">
 
                         <li class="nav-item test">
-                            <a class="nav-link active" data-id="{{ $itmes->id }}" id="data"
+                            
+                            <a class="nav-link active" id="sections" data-id="{{ $itmes->id }}" id="data"
                                 aria-current="page">{{ $itmes->name }}</a>
                         </li>
                 @endforeach
@@ -84,6 +85,7 @@
                     <div class="cards">
                         <ul class="list-group" id="sidebar" style="margin-top: 50px">
 
+                            <li class="list-group-item"></li>
 
                         </ul>
                     </div>
@@ -102,112 +104,89 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="module">
+      
         $(document).ready(function() {
 
-            $(".test a").on('click', function() {
-                let dataId = $(this).attr("data-id");
+           var getFirstSection=$('#sections').attr('data-id');
+         
+        viewBrands(getFirstSection);
 
-                $.ajax({
-                    type: "post",
-                    url: "{{ route('section_brand') }}",
-                    headers: {
+    
+            async function viewBrands(SectionId){
+                axios.get(`http://127.0.0.1:8000/section_brand?section_id=${SectionId}`).then((response) =>{
+                    var tmp='';
+                        response.data.forEach((brands)=>{
+                            tmp+=
 
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    data: {
-                        'section_id': dataId
-                    },
+                            `
+                        
+                            <li class="list-group-item brandd " id="brand" brand-id=${brands.id}>${brands.name}</li>
+                            `   
+                
+                        })
+                           let container = document.getElementById('sidebar');
+                           container.innerHTML='';
+                           container.innerHTML=tmp;
+                       
+                       
+                         
+                           viewProducts(response.data[2].id); //// get brandId  wheere have products
+                           $('.brandd').click(function (e) {
+                                var brandId=$(this).attr('brand-id');
+                                   
+                                viewProducts(brandId);
+               });
+                             });
+                           
+                             
 
-                    success: function(response) {
+                        
 
+            }
 
+        
+            async function viewProducts(getBrandId) 
+            {
+                axios.get(`http://127.0.0.1:8000/brand_products?brandId=${getBrandId}`).then((response) => {
+                    var tmp='';
+                        response.data.forEach((listOfProducts)=>{
+                            tmp+=
 
-                        function appendSideBar(sidebar, listOfBrands) {
-                            document.getElementById("sidebar").innerHTML = '';
-                            sidebar.append(fetchBrands(listOfBrands));
-                        }
-
-
-                        async function viewProducts(getBrandId) {
-                            axios.get(`http://127.0.0.1:8000/brand_products?brandId=${getBrandId}`).then((response) => {
-                                var tmp='';
-                                    response.data.forEach((listOfProducts)=>{
-                                        tmp+=
-
-                                       `
-                                  
-                                        <div  class="col-sm-3" style="width: 300px">'
-                                            <div class="card" style="margin-top: 50px"> 
-                                               <a href="${{route('information_products')}}"> <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
-                                                <div class="card-body">
-                                                <h5 class="card-title">${listOfProducts.name}</h5>
-                                            <p class="card-text">${listOfProducts.title }</p>
-                                            </div>
-                                            </div>
-                                            </div>
-                                        `
-
-                                    
-                                            })  
-                                       
-
-                                            var productcards = document.getElementById('productsData');
-
-productcards.innerHTML='';
-productcards.innerHTML=tmp;
-
-
-
-                            });
-
-
+                            `
+                        
+                            <div  class="col-sm-3" style="width: 300px">
+                                <div class="card" style="margin-top: 50px"> 
+                                    <a href="/information_products/${listOfProducts.id}"> <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
+                                    <div class="card-body">
+                                    <h5 class="card-title">${listOfProducts.name}</h5>
+                                <p class="card-text">${listOfProducts.title }</p>
+                                </div>
+                                </div>
+                                </div>
+                            `   
+                                    // console.log('getdata' +response);
+                                
+                }) 
                             
-                        }
+
+                        var productcards = document.getElementById('productsData');
+
+                            productcards.innerHTML='';
+                            productcards.innerHTML=tmp;
 
 
 
-
-                        function fetchBrands(brands) {
-
-
-                            if (!Object.keys(brands).length) return;
-
-                            let ul = document.createElement('ul');
-
-                            for (let i = 0; i < brands.length; i++) {
-
-                                let li = document.createElement('li')
-
-                                li.setAttribute('brandId', brands[i].id)
-                                li.setAttribute('id', 'brand')
-
-                                li.className = "list-group-item brandItem";
-                                li.innerHTML = brands[i].name;
-                               
-
-                                ul.append(li);
-
-                                li.onclick = function() {
-                                    var brandId = brands[i].id;
-
-                                    viewProducts(brandId);
-                                }
-                            }
-
-                            return ul;
-                        }
-
-
-
-                        let container = document.getElementById('sidebar');
-                        appendSideBar(container, response);
-
-                    }
-                });
-
-            })
+            });
+                  
            
-        });
+            }
+
+
+    
+
+        })
+           
+    
     </script>
 </body>
 

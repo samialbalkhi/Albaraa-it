@@ -16,7 +16,7 @@
         }
 
         .right {
-            margin-left: 300px;
+            margin-left: 500px;
 
         }
 
@@ -28,68 +28,59 @@
             text-align: right;
             margin-right: 200px;
         }
-        
+        h2{
+            text-align: right;
+            margin-right: 50px;
+            
+        }
+        h3{
+            margin-right: 70px;
+            margin-left: 100px;
+
+        }
     </style>
 </head>
 
 <body>
     <header class="container">
         <div class="left ">
-            <div class="cards ">
+            
+                <div class="cards ">
 
-                <div class="right">
-                    <div id="carouselExample" class="carousel slide">
-                        <div class="carousel-inner" style="width: 500px; height: 300px;">
-                            <div class="carousel-item active">
-                                <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg"
-                                    class="d-block w-100" alt="...">
+                    <div class="right">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner" style="width: 500px; height: 300px;">
+                                <div class="carousel-item active">
+
+                                    <img src="/storage/{{ $prodact->image }}" class="card-img-top">
+
+                                </div>
                             </div>
                         </div>
+                      
                     </div>
-                </div>
-            </div>
+        </div>
         </div>
     </header>
     <section>
         <div class="container">
             <div class="card">
 
-                <h1>name prodcat</h1>
-                <h3>title prodcut</h3>
-                <h5>price</h5>
+                <h1>{{$prodact->name}}</h1>
+                <h1>{{$prodact->title}}</h1>
+                <h2>{{$prodact->price}} $</h2>
             </div>
         </div>
     </section>
     <footer>
         <div class="container">
-            <div class="card">
 
-                <h1>ditals</h1>
-                <h6>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque
-                    corrupti quod, delectus aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente
-                    fugiat enim suscipit, magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate cumque corrupti quod, delectus
-                    aperiam officiis iure possimus esse quis incidunt ea, reiciendis sapiente fugiat enim suscipit,
-                    magni at alias tempore!
-                </h6>
-            </div>
+
+            <h1>ditals</h1>
+            <h3>
+                {{$prodact->list_of_details}}
+            </h3>
+
         </div>
     </footer>
 

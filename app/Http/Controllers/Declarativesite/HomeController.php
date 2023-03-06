@@ -41,9 +41,10 @@ class HomeController extends Controller
         
         return Prodact::where('brand_id',$request->brandId)->get();    
     }
-    public function information_products()
-    {
-        return view('Declarativesite.InformationProducts');
+    public function information_products(Request $request, $id)
+    { 
+        $prodact=Prodact::all()->find($id);
+        return view('Declarativesite.InformationProducts',compact('prodact'));
     }
 }
 

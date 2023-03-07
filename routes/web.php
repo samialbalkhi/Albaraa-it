@@ -94,5 +94,6 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/About_Us','About_Us')->name('About_Us');
             Route::get('/brand_products','brand_products')->name('brand_products');
             Route::get('/get_section','get_section')->name('get_section');
+            Route::get('/get_prodcatId','get_prodcatId')->name('get_prodcatId');
             Route::get('/information_products/{id}','information_products')->name('information_products');
         });

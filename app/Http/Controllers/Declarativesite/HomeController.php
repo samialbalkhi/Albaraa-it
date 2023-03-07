@@ -38,21 +38,23 @@ class HomeController extends Controller
     }
     public function brand_products(Request $request)
     {
-        
-        return Prodact::where('brand_id',$request->brandId)->get();    
+
+        return Prodact::where('brand_id', $request->brandId)->get();
     }
     public function information_products(Request $request, $id)
-    { 
-        $prodact=Prodact::all()->find($id);
-        return view('Declarativesite.InformationProducts',compact('prodact'));
+    {
+        $prodact = Prodact::all()->find($id);
+        return view('Declarativesite.InformationProducts', compact('prodact'));
     }
 
     public function get_section(Request $request)
-    {   
-       
-         return Section::where('brands:name,id,section_id',$request->sectionId)->get();
+    {
 
+        return Section::where('name', 'id', $request->sectionId)->get();
+    }
+
+    public function get_prodcatId(Request $request)
+    {
+      /// 
     }
 }
-
-

@@ -182,9 +182,9 @@
                     var tmp='';
                     response.data.forEach((ListOfSection)=>{
                         tmp+= `
-                        <a class="nav-link active" id="sadfdsads"
-                         
-                                aria-current="page" >${ListOfSection.name}</a>
+
+                        <a class="nav-link active" id="sections" data-id="${ $ListOfSection.id}" id="data"
+                                aria-current="page">${ $ListOfSection.name}</a>
 
                         `  
                          })

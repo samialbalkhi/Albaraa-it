@@ -46,6 +46,13 @@ class HomeController extends Controller
         $prodact=Prodact::all()->find($id);
         return view('Declarativesite.InformationProducts',compact('prodact'));
     }
+
+    public function get_section(Request $request)
+    {   
+       
+         return Section::where('brands:name,id,section_id',$request->sectionId)->get();
+
+    }
 }
 
 

@@ -69,7 +69,7 @@
                     <ul class="navbar-nav " id="btn">
 
                         <li class="nav-item test">
-                            
+
                             <a class="nav-link active" id="sections" data-id="{{ $itmes->id }}" id="data"
                                 aria-current="page">{{ $itmes->name }}</a>
                         </li>
@@ -164,8 +164,6 @@
                                 </div>
                                 </div>
                             `   
-                                    // console.log('getdata' +response);
-                                
                 }) 
                             
 
@@ -174,17 +172,34 @@
                             productcards.innerHTML='';
                             productcards.innerHTML=tmp;
 
-
-
             });
                   
            
             }
 
+            async function viewsection(getSection){
+                axios.get(`http://127.0.0.1:8000/get_section?sectionId=${getSection}`).then(response=>{
+                    var tmp='';
+                    response.data.forEach((ListOfSection)=>{
+                        tmp+= `
+                        <a class="nav-link active" id="sadfdsads"
+                         
+                                aria-current="page" >${ListOfSection.name}</a>
 
-    
+                        `  
+                         })
 
+                        var section=document.getElementById('test');
+                        section.innerHTML=tmp;
+                        $('.active').click(function (e) {
+                            console.log("sads");
+                })
+                
+            }   
+            
+                )}
         })
+    
            
     
     </script>

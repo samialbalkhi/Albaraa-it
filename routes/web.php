@@ -93,5 +93,6 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/section_brand','section_brand')->name('section_brand');
             Route::get('/About_Us','About_Us')->name('About_Us');
             Route::get('/brand_products','brand_products')->name('brand_products');
+            Route::get('/get_section','get_section')->name('get_section');
             Route::get('/information_products/{id}','information_products')->name('information_products');
         });

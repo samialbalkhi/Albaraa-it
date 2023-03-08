@@ -21,6 +21,7 @@ class BrandController extends Controller
     }
     public function create_brand(brand_request $request)
     {   
+        dd($request->all());
          Brand::create([
 
             'name'=>$request->name , 
@@ -39,7 +40,7 @@ class BrandController extends Controller
             
         return view('dashbord.editbrand',compact('brand','section'));
     }
-    public function update_brand(Request $request, $id)
+    public function update_brand(brand_request $request, $id)
     {
         $section=Brand::find($id);
         $section->update([

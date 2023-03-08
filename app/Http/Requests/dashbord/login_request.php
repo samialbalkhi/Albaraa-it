@@ -23,8 +23,8 @@ class Login_request extends FormRequest
     {
         return [
             
-            'email'=>'required|email',
-            'password'=>'required|min:6',
+            'email'=>['required','email','exists:admins,email'],
+            'password'=>['required','min:6'],
         ];
     }
 
@@ -33,8 +33,9 @@ class Login_request extends FormRequest
             return [
                 'email.required'=>'The email is required',
                 'email'=>'insted the email',
+                'email.exists'=>'The email is incorrect',
                 'password.required'=>'the password is required',
-                'password.min'=>'the password is must be at least 6 characters',
+              
 
             ];
     }

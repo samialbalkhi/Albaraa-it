@@ -47,14 +47,14 @@ class HomeController extends Controller
         return view('Declarativesite.InformationProducts', compact('prodact'));
     }
 
-    public function get_section(Request $request)
+    public function get_section()
     {
-
-        return Section::where('name', 'id', $request->sectionId)->get();
+            // sleep(3000);
+        return Section::all();
     }
 
     public function get_prodcatId(Request $request)
     {
-      /// 
+        return Prodact::where('brand_id')->get();
     }
 }

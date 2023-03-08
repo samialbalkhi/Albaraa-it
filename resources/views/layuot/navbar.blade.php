@@ -10,7 +10,7 @@
           <a class="nav-link" href="{{route('add_brandes')}}">Add Brandes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('view_product')}}">Add  Product</a>
+          <a class="nav-link" href="{{route('product')}}">Add  Product</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('view_section')}}">Add Section</a>

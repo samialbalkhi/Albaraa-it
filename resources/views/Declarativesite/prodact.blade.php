@@ -65,15 +65,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse  navbar-collapse" id="navbarNav">
-                @foreach ($Section as $itmes)
-                    <ul class="navbar-nav " id="btn">
+                <div id="sections"></div>
 
-                        <li class="nav-item test">
-
-                            <a class="nav-link active" id="sections" data-id="{{ $itmes->id }}" id="data"
-                                aria-current="page">{{ $itmes->name }}</a>
-                        </li>
-                @endforeach
                 </ul>
             </div>
         </div>
@@ -106,11 +99,10 @@
     <script type="module">
       
         $(document).ready(function() {
-
-           var getFirstSection=$('#sections').attr('data-id');
-         
-        viewBrands(getFirstSection);
-
+            
+            viewsection()
+              
+    
     
             async function viewBrands(SectionId){
                 axios.get(`http://127.0.0.1:8000/section_brand?section_id=${SectionId}`).then((response) =>{
@@ -129,12 +121,12 @@
                            container.innerHTML=tmp;
                        
                        
-                         
-                           viewProducts(response.data[2].id); //// get brandId  wheere have products
-                           $('.brandd').click(function (e) {
-                                var brandId=$(this).attr('brand-id');
-                                   
+                           var brandId=response.data[0].id
                                 viewProducts(brandId);
+                                
+                           $('.brandd').click(function (e) {
+                          
+                                viewProducts($(this).attr('brand-id'));
                });
                              });
                            
@@ -153,7 +145,7 @@
                             tmp+=
 
                             `
-                        
+                            
                             <div  class="col-sm-3" style="width: 300px">
                                 <div class="card" style="margin-top: 50px"> 
                                     <a href="/information_products/${listOfProducts.id}"> <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
@@ -177,22 +169,31 @@
            
             }
 
-            async function viewsection(getSection){
-                axios.get(`http://127.0.0.1:8000/get_section?sectionId=${getSection}`).then(response=>{
+            async function viewsection(){
+                axios.get(`http://127.0.0.1:8000/get_section`).then(response=>{
                     var tmp='';
                     response.data.forEach((ListOfSection)=>{
                         tmp+= `
+                      
+                             <ul class="navbar-nav">
 
-                        <a class="nav-link active" id="sections" data-id="${ $ListOfSection.id}" id="data"
-                                aria-current="page">${ $ListOfSection.name}</a>
+                            <li  id="sections" class="nav-item">
 
+                                <a class="nav-link active"  data-id="${ListOfSection.id}" id="data"
+
+                                    aria-current="page">${ListOfSection.name}</a>
+                            </li>
                         `  
                          })
 
-                        var section=document.getElementById('test');
+                        var section=document.getElementById('sections');
+                        console.log(section);
                         section.innerHTML=tmp;
+                        viewBrands(response.data[0].id)
+                        // console.log()
                         $('.active').click(function (e) {
-                            console.log("sads");
+                            
+                            viewBrands($(this).attr('data-id'));
                 })
                 
             }   

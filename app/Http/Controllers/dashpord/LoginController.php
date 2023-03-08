@@ -22,6 +22,5 @@ class LoginController extends Controller
     if (auth('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
       return redirect()->intended('/view_product');
     }
-    return back()->withInput($request->only('email'));
   }
 }

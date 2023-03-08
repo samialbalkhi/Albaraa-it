@@ -3,6 +3,7 @@
 namespace App\Http\Requests\dashbord;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class brand_request extends FormRequest
 {
@@ -21,19 +22,42 @@ class brand_request extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'section_id'=>'required',
-            'name'=>'required|max:20|unique:sections,name',
-        ];
+        if ($this->routeIs('create_brand')) {
+            return [
+                'section_id' => ['required', 'exists:sections,id'],
+                'name' => ['required', 'alpha','max:20', 'min:3',  'unique:sections,name'],
+            ];
+        } else {
+            
+            return [
+                'section_id' => ['required', 'exists:sections,id'],
+                'name' => ['required','alpha', 'max:20', 'min:3',Rule::unique('brands','name')->ignore($this->route()->id)],
+            ];
+        }
     }
 
     public function messages()
     {
-        return [
-
-            'section_id.required'=>'The Section of required',
-            'name.required'=>'The name of required',
-            'name.unique'=>'The name of unique',
-        ];
+        if ($this->routeIs('create_brand')) {
+            return [
+                'section_id.required' => 'The Section of required',
+                'section_id' => 'The Section is unavailable',
+                'name.required' => 'The name of required',
+                'name.max' => 'the name os the 20 cracter',
+                'name.min' => 'the name os the 3 cracter',
+                'name.string' => 'The name must be string',
+                'name.unique' => 'The name of unique',
+            ];
+        } else {
+            return [
+                'section_id.required' => 'The Section of required',
+                'section_id' => 'The Section is unavailable',
+                'name.required' => 'The name of required',
+                'name.max' => 'the name os the 20 cracter',
+                'name.min' => 'the name os the 3 cracter',
+                'name.string' => 'The name must be string',
+                'name.unique' => 'The name of unique',
+            ];
+        }
     }
 }

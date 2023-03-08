@@ -20,16 +20,22 @@ class Product_request extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
-    {
-        return [
-            'name'=>'required|max:15',
-            'title'=>'required',
-            'list_of_details'=>'required',
-            'price'=>'required',
-            'discount'=>'nullable',
-            'brand_id'=>'required',
-            'image'=>'required|image'
-        ];
+    {                                   
+        if($this->method()==='POST'){
+
+            return [
+                'name'=>'required|max:15',
+                'title'=>'required',
+                'list_of_details'=>'required',
+                'price'=>'required',
+                'discount'=>'nullable',
+                'brand_id'=>'required',
+                'image'=>'required|image'
+            ];
+        }else{
+
+        }
+     
     }
 
     public function messages()

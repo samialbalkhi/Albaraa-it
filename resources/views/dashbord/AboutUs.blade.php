@@ -18,77 +18,7 @@
     <div class="alert alert-success" role="alert">
         {{ Session::get('success') }}
     </div>
-@endif
-        <div class="container">
-            <div class="card">
-                <h3 class="mb-3 mt-3">profile</h3>
-                <div class="d-flex justify-content-center">
-                    <form method="post" action="{{ route('create_profile') }}" enctype="multipart/form-data"
-                        class="was-validated">
-                        @csrf
-
-                        <div class="mb-3 mt-3 ">
-                            <label for="file" class="form-label">upload image profile</label>
-                            <input type="file" class="form-control" id="image_profile" name="image_profile">
-
-                            <small id="image_erorr" class="form-text text-danger"></small>
-
-                            @error('image_profile')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 mt-3">
-                            <label for="text" class="form-label">About The Company</label>
-                            <textarea rows="4" class="form-control" id="text_About" name="text_About">
-                            </textarea>
-
-                            @error('text_About')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-
-                        </div>
-
-
-                        <div class="mb-3 mt-3 ">
-                            <label for="file" class="form-label">upload image </label>
-                            <input type="file" class="form-control" id="image" name="image">
-
-                            
-                            @error('image')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 mt-3">
-                            <label for="text" class="form-label">Our Mission</label>
-                            <textarea rows="4" class="form-control" id="text_mission" name="text_mission">
-                            </textarea>
-
-                            @error('text_About')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-
-                        </div>
-
-
-                        <div class="mb-3 mt-3">
-                            <label for="text" class="form-label">Oue vision</label>
-                            <textarea rows="4" class="form-control" id="text_vision" name="text_vision">
-                            </textarea>
-
-                            @error('text_About')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-
-                        </div>
-                     <button type="submit" class="btn btn-secondary">Save</button>
-
-
-                    </form>
-                </div>
-            </div>
-        </div>
+@endif    
         <table class="table">
             <thead>
               <tr>

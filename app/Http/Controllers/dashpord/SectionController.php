@@ -14,48 +14,44 @@ class SectionController extends Controller
 {
     public function view_section()
     {
-        $sections=Section::all();
-        return view('dashbord.addsection',compact('sections'));
+        $sections = Section::all();
+        return view('dashbord.addsection', compact('sections'));
     }
     public function createsection(Section_request $request)
     {
-       
-        
         Section::create([
-
-            'name'=>$request->name ,
-            
+            'name' => $request->name,
         ]);
 
-        return redirect()->back()->with(['success'=>'Insted Section !....']);
-        
+        return redirect()
+            ->back()
+            ->with(['success' => 'Insted Section !....']);
     }
-    public function edit_section(Request $request ,$id)
+    public function edit_section(Request $request, $id)
     {
-        $section=Section::find($id);
-        
-        $section=Section::select('id','name')->find($id);
-      
-        return view('dashbord.edit',compact('section'));
-        
+        $section = Section::find($id);
+
+        $section = Section::select('id', 'name')->find($id);
+
+        return view('dashbord.edit', compact('section'));
     }
-    public function update(Section_request $request, $id)
+    public function update(Request $request, $id)
     {
-       
-       $Section= Section::find($id);
-       
+        $Section = Section::find($id);
 
-      $Section -> update([
-
-                'name'=>$request->name,
-        
+        $Section->update([
+            'name' => $request->name,
         ]);
-        
-        return redirect()->back()->with(['success'=>'Update Section !....']);
+
+        return redirect()
+            ->back()
+            ->with(['success' => 'Update Section !....']);
     }
     public function delete_section($id)
     {
         Section::destroy($id);
-        return redirect()->back()->with(['success'=>'deleted Section !....']);
+        return redirect()
+            ->back()
+            ->with(['success' => 'deleted Section !....']);
     }
 }

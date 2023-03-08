@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Section_request extends FormRequest
@@ -21,20 +22,35 @@ class Section_request extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        if ($this->routeIs('createsection')) {
+            return [
+                'name' => ['required','max:20','alpha','unique:sections,name'],
+            ];
+        }else{
+            return [
 
-            'name'=>'required|max:20|unique:sections,name',
-            
-
-        ];
+                'name'=>['required','max:20','alpha','unique:sections,name',Rule::unique('Sections','name')->ignore($this->route()->id)],
+            ];
+        }
     }
     public function messages()
     {
-        return [
-            'name.required'=>'The name of required',
-            'name.unique'=>'the Section unique',
-            'name.max'=>'the maximum number of letters',
-           
-        ];
+        if($this->routeIs('createsection')) {
+
+            
+            return [
+                'name.required' => 'The name of required',
+                'name.unique' => 'the Section unique',
+                'name.alpha'=>'the name in chractres',
+                'name.max' => 'the maximum number of letters',
+            ];
+        }else{
+            return [
+                'name.required' => 'The name of required',
+                'name.alpha'=>'the name in chractres',
+                'name.max' => 'the maximum number of letters',
+            ];
+        }
+    
     }
 }

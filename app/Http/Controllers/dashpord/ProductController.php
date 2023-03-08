@@ -44,7 +44,7 @@ class ProductController extends Controller
         $brand=Brand::all();
         return view('dashbord.editproduct',compact('prodact','brand'));
     }
-    public function update_product(Request $request, $id)
+    public function update_product(Product_request $request, $id)
     {
         $prodact=Prodact::find($id);
         if($request->image){

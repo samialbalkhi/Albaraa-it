@@ -45,7 +45,7 @@ class brand_request extends FormRequest
                 'name.required' => 'The name of required',
                 'name.max' => 'the name os the 20 cracter',
                 'name.min' => 'the name os the 3 cracter',
-                'name.string' => 'The name must be string',
+                'name.alpha' => 'The name must be string',
                 'name.unique' => 'The name of unique',
             ];
         } else {

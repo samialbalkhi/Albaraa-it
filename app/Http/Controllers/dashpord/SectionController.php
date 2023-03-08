@@ -35,7 +35,7 @@ class SectionController extends Controller
 
         return view('dashbord.edit', compact('section'));
     }
-    public function update(Request $request, $id)
+    public function update(Section_request $request, $id)
     {
         $Section = Section::find($id);
 

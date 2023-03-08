@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\dashbord;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Product_request extends FormRequest
@@ -20,36 +21,104 @@ class Product_request extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
-    {                                   
-        if($this->method()==='POST'){
-
+    {
+        if ($this->routeIs('create_product')) {
+            
             return [
-                'name'=>'required|max:15',
-                'title'=>'required',
-                'list_of_details'=>'required',
-                'price'=>'required',
-                'discount'=>'nullable',
-                'brand_id'=>'required',
-                'image'=>'required|image'
+                'name' => ['required','max:15', 'min:3', 'alpha','unique:prodacts,name'],
+                'title' => ['required', 'alpha', 'min:3', 'max:15'],
+                'list_of_details' => ['required', 'min:3', 'max:15', 'alpha'],
+                'price' => ['required', 'numeric'],
+                'discount' => ['nullable', 'numeric'],
+                'brand_id' => ['required', 'exists:brands,id'],
+                'image' => ['required', 'image'],
             ];
-        }else{
-
+        } else {
+            
+            return [
+                'name' => ['required','max:15', 'min:3', 'alpha', Rule::unique('prodacts','name')->ignore($this->route()->id)],
+                'title' => ['required', 'alpha', 'min:3', 'max:20'],
+                'list_of_details' => ['required', 'min:3', 'max:30', 'alpha'],
+                'price' => ['required', 'numeric'],
+                'discount' => ['nullable', 'numeric'],
+                'brand_id' => ['required', 'exists:brands,id'],
+                'image' => ['required', 'image'],
+            ];
         }
-     
     }
 
     public function messages()
     {
-        return [
+        if ($this->routeIs('create_product')) {
+            return [
+                /////    name       /////
+                
+                'name.required' => 'The name is required',
+                'name.max' => 'name must be at least 15 characters',
+                'name.min' => 'The name must be at least 3characters',
+                'name.alpha' => 'the name must be alpha',
 
-            'name.required'=>'The name is required',
-            'name.max'=>'name must be at least 15 characters',
-            'list_of_details.required'=>'The list of details is required',
-            'price.required'=>'The price is required',
-            'brand_id.required'=>'The brand is required',
-            'image.required'=>'The image is required',
-            'image.image'=>'Please insert a photo'
+                ///////  title    ///////////
 
-        ];
+                'title.required' => 'the title is required',
+                'title.alpha' => 'the title must be characters',
+                'title.min' => 'the title must be at least 3 characters',
+                'title.max' => 'the title must be at least max 20 characters',
+
+                //////////////   Details          ////////////
+                'list_of_details.required' => 'The Details of details is required',
+                'list_of_details.min' => 'the Details is must be at least 3characters',
+                'list_of_details.max' => 'the Details is must be at least max 30  characters',
+                'list_of_details.alpha'=>'the Details is characters',
+                
+
+                /////////    price       ///////////////
+                'price.required' => 'The price is required',
+                'price.numeric' => 'The price is numeric',
+                'price.max' => 'the Price is must be at least max 10 numbers',
+                'price.min' => 'the Price is must be at least 1 number',
+
+                ////////// /        brands          /////
+                'brand_id.required' => 'The brand is required',
+                ///////////     image    ////////////
+                'image.required' => 'The image is required',
+                'image.image' => 'Please insert a photo',
+            ];
+        } else {
+            return [
+                /////    name       /////
+                
+                'name.required' => 'The name is required',
+                'name.max' => 'name must be at least 15 characters',
+                'name.min' => 'The name must be at least 3characters',
+                'name.alpha' => 'the name must be characters',
+
+                ///////  title    ///////////
+
+                'title.required' => 'the title is required',
+                'title.alpha' => 'the title must be alpha',
+                'title.min' => 'the title must be at least 3 characters',
+                'title.max' => 'the title must be at least max 20 characters',
+
+                //////////////   Details          ////////////
+                'list_of_details.required' => 'The Details of details is required',
+                'list_of_details.min' => 'the Details is must be at least 3characters',
+                'list_of_details.max' => 'the Details is must be at least max 30  characters',
+                'list_of_details.alpha', 'the Details is characters characters',
+               
+
+                /////////    price       ///////////////
+                'price.required' => 'The price is required',
+                'price.numeric' => 'The price is numeric',
+                'price.max' => 'the Price is must be at least max 10 numbers',
+                'price.min' => 'the Price is must be at least 1 number',
+
+                ////////// /        brands          /////
+                'brand_id.required' => 'The brand is required',
+                ///////////     image    ////////////
+                'image.required' => 'The image is required',
+                'image.image' => 'Please insert a photo',
+            ];
+        }
     }
 }

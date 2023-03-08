@@ -66,7 +66,7 @@
                             <input type="text" class="form-control" id="text_mission" name="text_mission" value="{{$profail->text_mission}}">
                         
 
-                            @error('text_About')
+                            @error('text_mission')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
 
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" id="text_vision" name="text_vision" value="{{$profail->text_vision}}">
                             
 
-                            @error('text_About')
+                            @error('text_vision')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
 

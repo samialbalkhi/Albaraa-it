@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Handler\Proxy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\dashbord\ProfelRequest;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
 
 class ProfileConroller extends Controller
@@ -23,7 +24,7 @@ class ProfileConroller extends Controller
 
         return view('dashbord.EditAbuotUs', compact('profail'));
     }
-    public function update_profile(Request $request, $id)
+    public function update_profile(ProfelRequest $request, $id)
     {
         $profail = Profile::find($id);
         if ($request->image) {

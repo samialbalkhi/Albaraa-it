@@ -52,7 +52,7 @@
                             <div class="carousel-inner" style="width: 500px; height: 300px;">
                                 <div class="carousel-item active">
 
-                                    <img src="/storage/{{ $prodact->image }}" class="card-img-top">
+                                    <img src="/storage/{{ $prodact->image }}"  class="card-img-top">
 
                                 </div>
                             </div>

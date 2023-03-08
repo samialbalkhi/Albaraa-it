@@ -49,12 +49,17 @@ class HomeController extends Controller
 
     public function get_section()
     {
-            // sleep(3000);
+           
         return Section::all();
     }
 
     public function get_prodcatId(Request $request)
     {
         return Prodact::where('brand_id')->get();
+    }
+
+    public function To_contact_us()
+    {
+        return view('Declarativesite.ToContactUs');
     }
 }

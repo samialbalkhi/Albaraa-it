@@ -94,5 +94,6 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/get_section','get_section')->name('get_section');
             Route::get('/get_prodcatId','get_prodcatId')->name('get_prodcatId');
             Route::get('/information_products/{id}','information_products')->name('information_products');
+            Route::get('/To_contact_us','To_contact_us')->name('To_contact_us');
         });
 

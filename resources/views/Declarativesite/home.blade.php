@@ -55,31 +55,36 @@
         <div class="right">
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner"  style="width: 600px; height: 300px;">
+                    @foreach ($baners as $items )
                   <div class="carousel-item active" >
-                    <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg" class="d-block w-100" alt="...">
+
+                    <img src="storage/{{ $items->image }}" class="d-block w-100" alt="...">
+                    
                   </div>
-                  <div class="carousel-item">
-                    <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="storage/images/GB2mMjbdPY4wgpZsXZhgApZJ7WDXZnlSoMkQQD7a.jpg" class="d-block w-100" alt="...">
-                  </div>
+                  
+                  @endforeach
                 </div>
+                
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
+                  
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+                  <span class="carousel-control-next-icon" aria-hidden="true">
+                      
+                </span>
+                
+                <span class="visually-hidden">Next</span>
+                
+            </button>
         </div>
+    </div>
     </header>
     <section class="prodact" style="overflow: hidden">
         <h2 style="text-align: center">Our On Prodacts</h2>
         <div class="row">
-            @foreach ($Prodact as $items )
+            @foreach ($Prodact_take as $items )
             <div class="col-sm-3" style="width: 300px;margin-left: 50px">
                 <div class="card" style="margin-top: 50px">
                     <img src="storage/{{ $items->image }}" class="card-img-top" width="250px" height="250px" alt="...">

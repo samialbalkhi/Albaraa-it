@@ -71,7 +71,7 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col-sm">
@@ -188,10 +188,9 @@
                          })
 
                         var section=document.getElementById('sections');
-                        console.log(section);
                         section.innerHTML=tmp;
                         viewBrands(response.data[0].id)
-                        // console.log()
+                      
                         $('.active').click(function (e) {
                             
                             viewBrands($(this).attr('data-id'));

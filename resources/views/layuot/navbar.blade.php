@@ -18,6 +18,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('about_us')}}">profile</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('view_bnars')}}">Add bnars</a>
+          </li>
       </ul>
     </div>
   </nav>

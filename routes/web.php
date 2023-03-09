@@ -3,6 +3,7 @@
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\dashpord\BanersController;
 use App\Http\Controllers\dashpord\BrandController;
 use App\Http\Controllers\dashpord\LoginController;
 use App\Http\Controllers\dashpord\ProfileConroller;
@@ -72,6 +73,13 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/delete_profile/{id}', "delete_profile")->name('delete_profile');
         Route::get('/get_profile', "get_profile")->name('get_profile');
         
+    });
+    Route::controller(BanersController::class)->group(function(){
+        Route::get('/view_bnars','view_bnars')->name('view_bnars');
+        Route::post('/create_bnars', "create_bnars")->name('create_bnars');
+        Route::get('/edit_bnars/{id}', "edit_bnars")->name('edit_bnars');
+        Route::post('/update_bnars/{id}', "update_bnars")->name('update_bnars');
+        Route::get('/delete_bnars/{id}', "delete_bnars")->name('delete_bnars');
     });
     
 });

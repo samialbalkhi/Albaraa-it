@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Declarativesite;
 
+use App\Models\Bnar;
 use App\Models\Brand;
 use App\Models\Prodact;
 use App\Models\Profile;
@@ -14,8 +15,15 @@ class HomeController extends Controller
 {
     public function view_home()
     {
-        $Prodact = Prodact::all();
-        return view('Declarativesite.home', compact('Prodact'));
+        $baners = Bnar::get();
+        $prodact_all = Prodact::get();
+        $Prodact_take = Prodact::orderBy('id', 'ASC')
+            ->take(4)
+            ->get();
+        $Prodact = Prodact::latest()
+            ->take(4)
+            ->get();
+        return view('Declarativesite.home', compact('Prodact', 'Prodact_take', 'prodact_all','baners'));
     }
     public function view_product()
     {
@@ -27,8 +35,7 @@ class HomeController extends Controller
     }
     public function section_brand(Request $request)
     {
-
-        return  Brand::where('section_id', $request->section_id)->get();
+        return Brand::where('section_id', $request->section_id)->get();
     }
 
     public function About_Us()
@@ -38,7 +45,6 @@ class HomeController extends Controller
     }
     public function brand_products(Request $request)
     {
-
         return Prodact::where('brand_id', $request->brandId)->get();
     }
     public function information_products(Request $request, $id)
@@ -49,7 +55,6 @@ class HomeController extends Controller
 
     public function get_section()
     {
-           
         return Section::all();
     }
 
@@ -62,4 +67,8 @@ class HomeController extends Controller
     {
         return view('Declarativesite.ToContactUs');
     }
+
+   
+
+    
 }

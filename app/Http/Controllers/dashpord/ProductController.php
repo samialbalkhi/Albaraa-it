@@ -10,16 +10,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Requests\dashbord\Product_request;
+use App\Models\Bnar;
 use App\Models\Detail;
 
 class ProductController extends Controller
 {
     public function view_product()
     {
+
+        // return $details=Prodact::with('details:details,prodact_id')->find(60);   /////// get details of product
         $brand = Brand::all();
         $prodact_brand = Prodact::with('brands:id,name')->get();
 
-        return view('dashbord.addproduct', compact('brand', 'prodact_brand'));
+        return view('dashbord.addproduct', compact('brand', 'prodact_brand','details'));
     }
     public function create_product(Request $request)
     {
@@ -49,9 +52,10 @@ class ProductController extends Controller
     }
     public function edit_product($id)
     {
+         $detail=Detail::all();
         $prodact = Prodact::with('brands:id,name')->find($id);
         $brand = Brand::all();
-        return view('dashbord.editproduct', compact('prodact', 'brand'));
+        return view('dashbord.editproduct', compact('prodact', 'brand','detail'));
     }
     public function update_product(Product_request $request, $id)
     {
@@ -67,12 +71,22 @@ class ProductController extends Controller
             'image' => $path,
             'name' => $request->name,
             'title' => $request->title,
-            'list_of_details' => $request->details,
             'price' => $request->price,
             'discount' => $request->discount,
             'brand_id' => $request->brand_id,
         ]);
 
+        $Detail=Detail::find($id);
+      
+     for ($i = 0; $i < ($request->listOfDetails); $i++) {
+        $Detail->update([
+
+            'details' => $request->listOfDetails[$i]['details'],
+            
+            
+        ]);
+       
+    }
         return redirect()
             ->back()
             ->with(['success' => 'Update product ']);

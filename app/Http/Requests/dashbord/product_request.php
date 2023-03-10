@@ -27,7 +27,7 @@ class Product_request extends FormRequest
             return [
                 'name' => ['required','max:15', 'min:3', 'alpha','unique:prodacts,name'],
                 'title' => ['required', 'alpha', 'min:3', 'max:15'],
-                'list_of_details' => ['required', 'min:3', 'max:15', 'alpha'],
+                'details' => ['required', 'min:3', 'max:15', 'alpha'],
                 'price' => ['required', 'numeric'],
                 'discount' => ['nullable', 'numeric'],
                 'brand_id' => ['required', 'exists:brands,id'],
@@ -38,7 +38,7 @@ class Product_request extends FormRequest
             return [
                 'name' => ['required','max:15', 'min:3', 'alpha', Rule::unique('prodacts','name')->ignore($this->route()->id)],
                 'title' => ['required', 'alpha', 'min:3', 'max:20'],
-                'list_of_details' => ['required', 'min:3', 'max:30', 'alpha'],
+                'details' => ['required', 'min:3', 'max:30', 'alpha'],
                 'price' => ['required', 'numeric'],
                 'discount' => ['nullable', 'numeric'],
                 'brand_id' => ['required', 'exists:brands,id'],
@@ -66,10 +66,10 @@ class Product_request extends FormRequest
                 'title.max' => 'the title must be at least max 20 characters',
 
                 //////////////   Details          ////////////
-                'list_of_details.required' => 'The Details of details is required',
-                'list_of_details.min' => 'the Details is must be at least 3characters',
-                'list_of_details.max' => 'the Details is must be at least max 30  characters',
-                'list_of_details.alpha'=>'the Details is characters',
+                'details.required' => 'The Details of details is required',
+                'details.min' => 'the Details is must be at least 3characters',
+                'details.max' => 'the Details is must be at least max 30  characters',
+                'details.alpha'=>'the Details is characters',
                 
 
                 /////////    price       ///////////////
@@ -101,10 +101,10 @@ class Product_request extends FormRequest
                 'title.max' => 'the title must be at least max 20 characters',
 
                 //////////////   Details          ////////////
-                'list_of_details.required' => 'The Details of details is required',
-                'list_of_details.min' => 'the Details is must be at least 3characters',
-                'list_of_details.max' => 'the Details is must be at least max 30  characters',
-                'list_of_details.alpha', 'the Details is characters characters',
+                'details.required' => 'The Details of details is required',
+                'details.min' => 'the Details is must be at least 3characters',
+                'details.max' => 'the Details is must be at least max 30  characters',
+                'details.alpha', 'the Details is characters characters',
                
 
                 /////////    price       ///////////////

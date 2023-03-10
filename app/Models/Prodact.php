@@ -15,5 +15,10 @@ class Prodact extends Model
     {
         return $this->belongsTo(Brand::class,'brand_id'); 
     }
+
+    public function details()
+    {
+        return $this->hasMany(Detail::class,'prodact_id');
+    }
 }
 

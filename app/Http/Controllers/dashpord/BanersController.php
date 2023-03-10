@@ -6,6 +6,7 @@ use App\Models\Bnar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\dashbord\BnarsRecuest;
 
 class BanersController extends Controller
 {
@@ -14,7 +15,7 @@ class BanersController extends Controller
         $banr = Bnar::get();
         return view('dashbord.baners', compact('banr'));
     }
-    public function create_bnars(Request $request)
+    public function create_bnars(BnarsRecuest $request)
     {
         $path = $request->image->store('images', 'public');
         Bnar::create([
@@ -30,7 +31,7 @@ class BanersController extends Controller
         $banars = Bnar::get()->find($id);
         return view('dashbord.editbaner', compact('banars'));
     }
-    public function update_bnars(Request $request, $id)
+    public function update_bnars(BnarsRecuest $request, $id)
     {
         $banars = Bnar::get()->find($id);
         if ($request->image) {

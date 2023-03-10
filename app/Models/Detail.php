@@ -11,4 +11,9 @@ class Detail extends Model
 
     protected $fillable=['id','details','prodact_id','created_at','updated_at'];
     protected $hidden=['created_at','updated_at'];
+
+    public function prodacts()
+    {
+        return $this->belongsTo(Prodact::class,'prodact_id');
+    }
 }

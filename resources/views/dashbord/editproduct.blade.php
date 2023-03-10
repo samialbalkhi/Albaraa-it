@@ -66,17 +66,38 @@
                             </div>
 
 
-                            <div class="mb-3 mt-3">
-                                <label for="text" class="form-label">Update Detalis</label>
-                                <input type="text" class="form-control" id="list" name="list_of_details"
-                                    value="{{ $prodact->list_of_details }}">
-
-                                <small id="list_erorr" class="form-text text-danger"></small>
-
-                                @error('list_of_details')
-                                    <small class="form-text text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
+                            <div class="repeater">
+                                <!--
+                        The value given to the data-repeater-list attribute will be used as the
+                        base of rewritten name attributes.  In this example, the first
+                        data-repeater-item's name attribute would become group-a[0][text-input],
+                        and the second data-repeater-item would become group-a[1][text-input]
+                    -->
+                                <div data-repeater-list="listOfDetails">
+                                    <div data-repeater-item>
+                                        <input type="hidden" name="id" id="cat-id" />
+                                        <label for="text" class="form-label">List Of Prodact</label>
+                                        <div class="mb-1 mt-1">
+                                            @foreach ($detail as $items )
+                                             
+                                            
+                                            <input type="text" class="form-control" id="details" name="details" value="{{$items->details}}">
+                                            
+                                            @endforeach
+                                            
+                                            @error('details')
+                                                <small class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                            <button data-repeater-delete type="button"
+                                                class="btn btn-secondary">delete</button>
+                                            <button data-repeater-create type="button" class="btn btn-secondary">Add</button>
+    
+                                        </div>
+                                    </div>
+    
+    
+    
+                                </div>
 
                             <div class="mb-3 mt-3">
                                 <label for="price" class="form-label">Update Price</label>

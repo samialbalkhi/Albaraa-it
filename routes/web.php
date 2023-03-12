@@ -1,15 +1,19 @@
 <?php
 
 use Illuminate\Auth\Events\Login;
+use App\Http\Livewire\ListDetails;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashbordController;
-use App\Http\Controllers\dashpord\BanersController;
 use App\Http\Controllers\dashpord\BrandController;
 use App\Http\Controllers\dashpord\LoginController;
+use App\Http\Controllers\dashpord\BanersController;
+use App\Http\Controllers\dashpord\DetailsController;
 use App\Http\Controllers\dashpord\ProfileConroller;
 use App\Http\Controllers\dashpord\ProductController;
 use App\Http\Controllers\dashpord\SectionController;
 use App\Http\Controllers\Declarativesite\HomeController;
+use App\Models\Detail;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +26,22 @@ use App\Http\Controllers\Declarativesite\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
 
 
 Route::middleware(['auth:admin'])->group(function () {
 
     //////////          Product       ///////////////////////// 
 
+Route::controller(DetailsController::class)->group(function(){
+    Route::get('/edit','edit_detail')->name('edit_detail');
+        Route::post('/update','update_detail')->name('update_detail');
+});
+
+
     Route::controller(ProductController::class)->group(function () {
+   
         Route::get('/view_product', "view_product")->name('product');
         Route::post('create_product', "create_product")->name('create_product');
         Route::get('/edit_product/{id}', "edit_product")->name('edit_product');
@@ -105,3 +115,7 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('/To_contact_us','To_contact_us')->name('To_contact_us');
         });
 
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

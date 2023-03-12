@@ -17,7 +17,6 @@ class ProductController extends Controller
 {
     public function view_product()
     {
-        // return $details=Prodact::with('details:details,prodact_id')->find(60);   /////// get details of product
         $brand = Brand::all();
         $prodact_brand = Prodact::with('brands:id,name')->get();
 
@@ -25,6 +24,9 @@ class ProductController extends Controller
     }
     public function create_product(Request $request)
     {
+        // DB::transaction(function () {
+            
+        // });
         $path = $request->image->store('images', 'public');
         $total = $request->price - $request->discount;
         $prodact = Prodact::create([
@@ -35,6 +37,9 @@ class ProductController extends Controller
             'discount' => $total,
             'brand_id' => $request->brand_id,
         ]);
+        // $prodact->details()->create([
+
+        // ]);
 
         $product_id = $prodact->id;
 
@@ -51,7 +56,8 @@ class ProductController extends Controller
     }
     public function edit_product($id)
     {
-        $detail = Detail::all();
+        $detail = Detail::where('prodact_id', $id)->get();
+
         $prodact = Prodact::with('brands:id,name')->find($id);
         $brand = Brand::all();
         return view('dashbord.editproduct', compact('prodact', 'brand', 'detail'));
@@ -62,7 +68,7 @@ class ProductController extends Controller
         $prodact = Prodact::find($id);
         if ($request->image) {
             if (Storage::exists('public/' . $prodact->image));
-            Storage::delete(['public', $prodact->image]);
+            Storage::delete(['public/', $prodact->image]);
         }
 
         $path = $request->image->store('images', 'public');
@@ -75,18 +81,6 @@ class ProductController extends Controller
             'discount' => $request->discount,
             'brand_id' => $request->brand_id,
         ]);
-        /////// update   details_Prodact       /////////// 
-        $Detail = Prodact::with('details:id,details,prodact_id')->find($id);
-       return  $Detail->details ;
-          
-         for ($i = 0; $i < ($request->listOfDetails); $i++) {
-            $Detail->update([
-                
-                'details' => $request->listOfDetails[$i]['details'],
-
-            ]);
-
-        }
         return redirect()
             ->back()
             ->with(['success' => 'Update product ']);
@@ -98,8 +92,5 @@ class ProductController extends Controller
             ->back()
             ->with(['success' => 'deleted product ']);
     }
-    // public function respons()
-    // {
-    //     return Prodact::with('brands:id,name')->get();
-    // }
+
 }

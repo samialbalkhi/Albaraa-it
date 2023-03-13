@@ -36,7 +36,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
 Route::controller(DetailsController::class)->group(function(){
     Route::get('/edit','edit_detail')->name('edit_detail');
-    Route::post('/update','update_detail')->name('update_detail');
+    Route::post('/update-details/{id}','update_detail');
 });
 
 

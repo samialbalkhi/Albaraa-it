@@ -162,7 +162,7 @@
         </div>
 
         <!-- Update Student Modal -->
-        <div wire:ignore.self class="modal fade" id="updateStudentModal" tabindex="-1"
+        <div  class="modal fade" id="updateStudentModal" tabindex="-1"
             aria-labelledby="updateStudentModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -171,30 +171,31 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" wire:click="closeModal"
                             aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form id="formData" method="POST" >
+                        @csrf
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label>Update details</label>
                                 <input type="text" name="details" id="details" class="form-control">
+                                {{-- <input type="hidden" name="id" value="" class="form-control"> --}}
                                 @error('details')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
 
 
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" wire:click="closeModal"
                                 data-bs-dismiss="modal">Close</button>
-                            <button type="submit" data-id="0"
-                                class="btn btn-primary Update_details">Update</button>
+                            <button type="submit" 
+                                class="btn btn-primary ">Update</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -202,43 +203,20 @@
             $(document).ready(function() {
                 $(".detiles").click(function() {
                     var id = $(this).attr("details_id");
-                 
+
                     $.ajax({
                         type: "GET",
                         url: "/edit?id=" + id,
-                        'id': id,
-                        success: function(response) {
-                            $('#details').val(response.data); 
 
+                        success: function(response) {
+                            $('#details').val(response.data);
+                            // $(selector).attr(attributeName, value);
+                              let idd=  $('#formData').attr('action','/update-details/'+id);
+                            //   console.log(idd);
                         }
                     });
                 })
 
-
-            });
-            $('.Update_details').on("click", function(e) {
-                e.preventDefault();
-
-                console.log('name');
-                
-           var details= $("input[details='details']").val();  
-                   
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('update_detail') }}",
-                    data :{
-
-                    'details':name 
-                } ,
-                    headers: {
-
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                     dataType: "json",
-                    success: function(response) {
-                        conslole.log(response);
-                    }
-                });
 
             });
         </script>
@@ -251,5 +229,4 @@
         </script>
 
     </body>
-
     </html>

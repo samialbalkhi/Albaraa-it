@@ -202,36 +202,44 @@
             $(document).ready(function() {
                 $(".detiles").click(function() {
                     var id = $(this).attr("details_id");
+                 
                     $.ajax({
                         type: "GET",
                         url: "/edit?id=" + id,
                         'id': id,
                         success: function(response) {
-                            $('#details').val(response.data);
-
-
-                        }
-                    });
-                })
-                $('.Update_details').click(function() {
-                    //  var id=id.val();
-                    var details = ('#details').val();
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ route('update_detail') }}",
-                        data: {
-                            'details': details
-                        },
-                        headers: {
-
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        dataType: "dataType",
-                        success: function(response) {
+                            $('#details').val(response.data); 
 
                         }
                     });
                 })
+
+
+            });
+            $('.Update_details').on("click", function(e) {
+                e.preventDefault();
+
+                console.log('name');
+                
+           var details= $("input[details='details']").val();  
+                   
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('update_detail') }}",
+                    data :{
+
+                    'details':name 
+                } ,
+                    headers: {
+
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                     dataType: "json",
+                    success: function(response) {
+                        conslole.log(response);
+                    }
+                });
+
             });
         </script>
 

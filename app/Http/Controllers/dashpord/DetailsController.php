@@ -22,7 +22,7 @@ class DetailsController extends Controller
       
       $update= $update_detals->update([
 
-        'details'=>$request->details,
+        'details'=>$request->name,
 
        ]);
 

@@ -28,7 +28,7 @@
 
                     <div class="mb-3 mt-3 ">
                         <label for="file" class="form-label">upload image banrs</label>
-                        <input type="file" class="form-control" id="image" name="image">
+                        <input type="file" class="form-control" id="image[]" name="image">
 
                         <small id="image_erorr" class="form-text text-danger"></small>
 

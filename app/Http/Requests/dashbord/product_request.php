@@ -23,20 +23,18 @@ class Product_request extends FormRequest
     public function rules(): array
     {
         if ($this->routeIs('create_product')) {
-            
             return [
-                'name' => ['required','max:15', 'min:3', 'alpha','unique:prodacts,name'],
+                'name' => ['required', 'max:15', 'min:3', 'alpha', 'unique:prodacts,name'],
                 'title' => ['required', 'alpha', 'min:3', 'max:15'],
-                'details' => ['required', 'min:3', 'max:15', 'alpha'],
+                'details' => ['required','min:3', 'max:15','alpha'],
                 'price' => ['required', 'numeric'],
                 'discount' => ['nullable', 'numeric'],
                 'brand_id' => ['required', 'exists:brands,id'],
                 'image' => ['required', 'image'],
             ];
         } else {
-            
             return [
-                'name' => ['required','max:15', 'min:3', 'alpha', Rule::unique('prodacts','name')->ignore($this->route()->id)],
+                'name' => ['required', 'max:15', 'min:3', 'alpha', Rule::unique('prodacts', 'name')->ignore($this->route()->id)],
                 'title' => ['required', 'alpha', 'min:3', 'max:20'],
                 'details' => ['required', 'min:3', 'max:30', 'alpha'],
                 'price' => ['required', 'numeric'],
@@ -52,7 +50,7 @@ class Product_request extends FormRequest
         if ($this->routeIs('create_product')) {
             return [
                 /////    name       /////
-                
+
                 'name.required' => 'The name is required',
                 'name.max' => 'name must be at least 15 characters',
                 'name.min' => 'The name must be at least 3characters',
@@ -69,8 +67,7 @@ class Product_request extends FormRequest
                 'details.required' => 'The Details of details is required',
                 'details.min' => 'the Details is must be at least 3characters',
                 'details.max' => 'the Details is must be at least max 30  characters',
-                'details.alpha'=>'the Details is characters',
-                
+                'details.alpha' => 'the Details is characters',
 
                 /////////    price       ///////////////
                 'price.required' => 'The price is required',
@@ -87,7 +84,7 @@ class Product_request extends FormRequest
         } else {
             return [
                 /////    name       /////
-                
+
                 'name.required' => 'The name is required',
                 'name.max' => 'name must be at least 15 characters',
                 'name.min' => 'The name must be at least 3characters',
@@ -104,8 +101,8 @@ class Product_request extends FormRequest
                 'details.required' => 'The Details of details is required',
                 'details.min' => 'the Details is must be at least 3characters',
                 'details.max' => 'the Details is must be at least max 30  characters',
-                'details.alpha', 'the Details is characters characters',
-               
+                'details.alpha',
+                'the Details is characters characters',
 
                 /////////    price       ///////////////
                 'price.required' => 'The price is required',

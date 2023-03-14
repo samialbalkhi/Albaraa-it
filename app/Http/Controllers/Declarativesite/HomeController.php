@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Declarativesite;
 
 use App\Models\Bnar;
 use App\Models\Brand;
+use App\Models\Detail;
 use App\Models\Prodact;
 use App\Models\Profile;
 use App\Models\Section;
@@ -23,7 +24,7 @@ class HomeController extends Controller
         $Prodact = Prodact::latest()
             ->take(4)
             ->get();
-        return view('Declarativesite.home', compact('Prodact', 'Prodact_take', 'prodact_all','baners'));
+        return view('Declarativesite.home', compact('Prodact', 'Prodact_take', 'prodact_all', 'baners'));
     }
     public function view_product()
     {
@@ -49,7 +50,8 @@ class HomeController extends Controller
     }
     public function information_products(Request $request, $id)
     {
-        $prodact = Prodact::all()->find($id);
+        $prodact = Prodact::with('details:id,details,prodact_id')->find($id);
+
         return view('Declarativesite.InformationProducts', compact('prodact'));
     }
 
@@ -67,8 +69,4 @@ class HomeController extends Controller
     {
         return view('Declarativesite.ToContactUs');
     }
-
-   
-
-    
 }

@@ -78,7 +78,11 @@
 
             <h1>ditals</h1>
             <h3>
-                {{$prodact->list_of_details}}
+                @foreach ($prodact->details as $item )
+           
+            {{$item->details}}
+              
+                @endforeach
             </h3>
 
         </div>

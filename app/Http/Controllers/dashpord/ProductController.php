@@ -22,7 +22,7 @@ class ProductController extends Controller
 
         return view('dashbord.addproduct', compact('brand', 'prodact_brand'));
     }
-    public function create_product(Request $request)
+    public function create_product(Product_request $request)
     {
         // DB::transaction(function () {
             
@@ -42,7 +42,6 @@ class ProductController extends Controller
         // ]);
 
         $product_id = $prodact->id;
-
         for ($i = 0; $i < count($request->listOfDetails); $i++) {
             Detail::create([
                 'details' => $request->listOfDetails[$i]['details'],

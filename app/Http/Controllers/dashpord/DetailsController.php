@@ -13,9 +13,11 @@ class DetailsController extends Controller
     public function edit_detail(Request $request)
     {
        
-        
+        $detals=DB::table('details')
+        ->where('id',$request->id)
+        ->select('id','details')
+        ->first()->details;
 
-        $detals=DB::table('details')->where('id',$request->id)->select('id','details')->first()->details;
         return response()->json(['data' => $detals]);
     }
     public function update_detail($id)
@@ -29,6 +31,6 @@ class DetailsController extends Controller
         'details'=>request()->details,
        ]);
 
-    //    return ;
+        return response()->json(['data' => $update_detals]);
     }   
 }

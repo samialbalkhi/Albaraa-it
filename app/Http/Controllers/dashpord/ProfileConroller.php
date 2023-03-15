@@ -30,7 +30,7 @@ class ProfileConroller extends Controller
         if ($request->image) {
 
             if (Storage::exists('public/' . $profail->image) && ('public/' . $profail->image_profile));
-            Storage::delete(['public', $profail->image] && (['public', $profail->image_profile]));
+            Storage::delete('public'. $profail->image && ('public'. $profail->image_profile));
         }
         $path = $request->image->store('image', 'public');
         $path_profile = $request->image_profile->store('images_profile', 'public');

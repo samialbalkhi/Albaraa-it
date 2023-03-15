@@ -17,15 +17,18 @@ class BanersController extends Controller
     }
     public function create_bnars(BnarsRecuest $request)
     {
-        dd($request->all());
-        for($i=0 ; $i<count($request->image); $i++){
-
-            $path = $request->image->store('images_banres', 'public');
+        for ($i = 0; $i < count($request->image); $i++) {
+            # code...qecog
+            
+            $path = $request->image[$i]->store('images_banres', 'public');
+            
             Bnar::create([
                 'image' => $path,
             ]);
         }
-    
+
+        // for($i=1 ; $i<count($request->image); $i++){
+
         return redirect()
             ->back()
             ->with(['success' => 'Insted image !....']);
@@ -38,11 +41,11 @@ class BanersController extends Controller
     public function update_bnars(BnarsRecuest $request, $id)
     {
         $banars = Bnar::get()->find($id);
-        if ($request->image) {
-            if (Storage::exists('public/' . $banars->image)) {
-                Storage::delete(['public/', $banars->image]);
-            }
-        }
+        // if ($request->image) {
+            if (Storage::exists('public/' . $banars->image)) 
+                Storage::delete('public/'. $banars->image);
+            
+        // }
         $path = $request->image->store('images_banres', 'public');
 
         $banars->update([

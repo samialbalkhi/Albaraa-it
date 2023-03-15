@@ -115,7 +115,3 @@ Route::controller(DetailsController::class)->group(function(){
             Route::get('/To_contact_us','To_contact_us')->name('To_contact_us');
         });
 
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

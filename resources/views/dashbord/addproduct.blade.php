@@ -20,6 +20,19 @@
             </div>
         @endif
 
+
+
+
+        {{-- error in the vlidation --}}
+
+        {{-- @if($errors->has()) --}}
+    @foreach ($errors->all() as $error)
+        <div>{{ $error }}</div>
+    @endforeach
+{{-- @endif --}}
+
+        {{-- error in the vlidation --}}
+
         <div class="container">
             <div class="card">
                 <h3 class="mb-3 mt-3">Add Your Prodect</h3>
@@ -70,6 +83,9 @@
                     data-repeater-item's name attribute would become group-a[0][text-input],
                     and the second data-repeater-item would become group-a[1][text-input]
                 -->
+                {{-- @error('listOfDetails')
+                <small class="form-text text-danger">{{ $message }}</small>
+                @enderror --}}
                             <div data-repeater-list="listOfDetails">
                                 <div data-repeater-item>
                                     <input type="hidden" name="id" id="cat-id" />

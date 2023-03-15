@@ -18,14 +18,15 @@ class ProductController extends Controller
     public function view_product()
     {
         $brand = Brand::all();
-        $prodact_brand = Prodact::with('brands:id,name')->get();
+        $prodact_brand = Prodact::with('brands:id,name')->take(10)->get();
 
         return view('dashbord.addproduct', compact('brand', 'prodact_brand'));
     }
     public function create_product(Product_request $request)
     {
-        // DB::transaction(function () {
-            
+
+        
+        // DB::transaction(function () {  
         // });
         $path = $request->image->store('images', 'public');
         $total = $request->price - $request->discount;
@@ -67,7 +68,7 @@ class ProductController extends Controller
         $prodact = Prodact::find($id);
         if ($request->image) {
             if (Storage::exists('public/' . $prodact->image));
-            Storage::delete(['public/', $prodact->image]);
+            Storage::delete('public/'. $prodact->image);
         }
 
         $path = $request->image->store('images', 'public');

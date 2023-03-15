@@ -17,7 +17,7 @@ class ProdactFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>fake()->title,
+            'name'=>fake()->titl,
             'title'=>fake()->title,
             'image'=>'images/B827f4bVp343UFGgTawq9pTFZITWWjQxcZgrOWIt.jpg',
             'price'=>random_int(1000,10000),

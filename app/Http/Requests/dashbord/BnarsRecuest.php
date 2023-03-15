@@ -40,12 +40,14 @@ class BnarsRecuest extends FormRequest
     
                 'image.required'=>'the image is required',
                 'image.image'=>'please enter the image',
+                
             ];
         }else{
             return [
     
                 'image.required'=>'the image is required',
                 'image.image'=>'please enter the image',
+                
             ];
         }
     }

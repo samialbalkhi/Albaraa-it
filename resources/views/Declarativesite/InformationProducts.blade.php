@@ -80,7 +80,7 @@
             <h3>
                 @foreach ($prodact->details as $item )
            
-            {{$item->details}}
+            {{$item->details}}<br><br>
               
                 @endforeach
             </h3>

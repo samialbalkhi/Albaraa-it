@@ -26,7 +26,8 @@ class Product_request extends FormRequest
             return [
                 'name' => ['required', 'max:15', 'min:3', 'alpha', 'unique:prodacts,name'],
                 'title' => ['required', 'alpha', 'min:3', 'max:15'],
-                'details' => ['required','min:3', 'max:15','alpha'],
+                'listOfDetails' => ['array','required'],
+                'listOfDetails.*.details'=>['required','min:3'],
                 'price' => ['required', 'numeric'],
                 'discount' => ['nullable', 'numeric'],
                 'brand_id' => ['required', 'exists:brands,id'],
@@ -64,10 +65,11 @@ class Product_request extends FormRequest
                 'title.max' => 'the title must be at least max 20 characters',
 
                 //////////////   Details          ////////////
-                'details.required' => 'The Details of details is required',
-                'details.min' => 'the Details is must be at least 3characters',
-                'details.max' => 'the Details is must be at least max 30  characters',
-                'details.alpha' => 'the Details is characters',
+                'listOfDetails.required' => 'The Details is required',
+                'listOfDetails.array' => 'The Details must be array',
+                'listOfDetails.*.details.min' => 'the Details is must be at least 3characters',
+                'listOfDetails.*.details.max' => 'the Details is must be at least max 30  characters',
+                'listOfDetails.*.details.alpha' => 'the Details is characters',
 
                 /////////    price       ///////////////
                 'price.required' => 'The price is required',

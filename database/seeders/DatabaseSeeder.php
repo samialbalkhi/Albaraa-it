@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Brand;
 use App\Models\Prodact;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,11 +19,13 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     // 'name' => 'Test User',
+        //     // 'email' => 'test@example.com',
         // ]);
-        Prodact::factory(5000)->create();
-
+        // Prodact::factory(5000)->create();
+        // User::factory(500)->create();
+        Brand::factory(200)->create();
         
     }
+
 }

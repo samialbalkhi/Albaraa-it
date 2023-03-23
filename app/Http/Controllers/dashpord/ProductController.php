@@ -12,6 +12,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Requests\dashbord\Product_request;
 use App\Models\Bnar;
 use App\Models\Detail;
+use App\Models\Imageprodcu;
 
 class ProductController extends Controller
 {
@@ -28,10 +29,10 @@ class ProductController extends Controller
         
         // DB::transaction(function () {  
         // });
-        $path = $request->image->store('images', 'public');
+        // $path = $request->image->store('images', 'public');
         $total = $request->price - $request->discount;
         $prodact = Prodact::create([
-            'image' => $path,
+           
             'name' => $request->name,
             'title' => $request->title,
             'price' => $request->price,
@@ -49,7 +50,18 @@ class ProductController extends Controller
                 'prodact_id' => $product_id,
             ]);
         }
+        $product_id = $prodact->id;
+        for ($i = 0 ; $i < count($request->image) ; $i++){
 
+        $path = $request->image[$i]->store('images', 'public');
+        Imageprodcu::create([
+
+            'image'=>$path,
+            'prodact_id' => $product_id,
+
+        ]);
+
+        }
         return redirect()
             ->back()
             ->with(['success' => 'insted product ']);
@@ -92,5 +104,7 @@ class ProductController extends Controller
             ->back()
             ->with(['success' => 'deleted product ']);
     }
+
+   
 
 }

@@ -15,7 +15,7 @@ class BanersController extends Controller
         $banr = Bnar::get();
         return view('dashbord.baners', compact('banr'));
     }
-    public function create_bnars(BnarsRecuest $request)
+    public function create_bnars(Request $request)
     {
         for ($i = 0; $i < count($request->image); $i++) {
             # code...qecog

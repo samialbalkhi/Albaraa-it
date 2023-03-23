@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         //     // 'name' => 'Test User',
         //     // 'email' => 'test@example.com',
         // ]);
-        // Prodact::factory(5000)->create();
+        Prodact::factory(50)->create();
         // User::factory(500)->create();
-        Brand::factory(200)->create();
+        // Brand::factory(200)->create();
         
     }
 

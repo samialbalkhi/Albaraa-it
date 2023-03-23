@@ -17,12 +17,12 @@ class ProdactFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>fake()->titl,
+            'name'=>fake()->name,
             'title'=>fake()->title,
             'image'=>'images/B827f4bVp343UFGgTawq9pTFZITWWjQxcZgrOWIt.jpg',
             'price'=>random_int(1000,10000),
             'discount'=>10,
-            'brand_id'=>4,
+            'brand_id'=>2,
             
         ];
     }

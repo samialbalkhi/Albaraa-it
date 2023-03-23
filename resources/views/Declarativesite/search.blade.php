@@ -61,7 +61,7 @@
     
     <nav class="navbar navbar-expand-lg" id="navbar">
         <form class="form-inline my-2 my-lg-0" action="{{route('search')}}">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="Search" name="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         <div class="container-fluid">
@@ -145,7 +145,7 @@
         
             async function viewProducts(getBrandId) 
             {
-                axios.get(`http://127.0.0.1:8000/brand_products?brandId=${getBrandId}`).then((response) => {
+                axios.get(`http://127.0.0.1:8000/search`).then((response) => {
                     var tmp='';
                         response.data.forEach((listOfProducts)=>{
                             tmp+=
@@ -154,7 +154,7 @@
                             
                             <div  class="col-sm-3" style="width: 300px">
                                 <div class="card" style="margin-top: 50px"> 
-                                    <a href="/information_products/${listOfProducts.id}"> <img src="storage/${listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
+                                    <a href="/information_products/${listOfProducts.id}"> <img src="storage/${ listOfProducts.image }" class="card-img-top" width="250px" height="250px" ></a>
                                     <div class="card-body">
                                     <h5 class="card-title">${listOfProducts.name}</h5>
                                 <p class="card-text">${listOfProducts.title }</p>
@@ -167,8 +167,10 @@
 
                         var productcards = document.getElementById('productsData');
 
-                            productcards.innerHTML='';
+                            // productcards.innerHTML='';
                             productcards.innerHTML=tmp;
+
+                            console.log($productcards);
 
             });
                   

@@ -21,7 +21,7 @@ class BrandController extends Controller
     }
     public function create_brand(brand_request $request)
     {   
-        dd($request->all());
+       
          Brand::create([
 
             'name'=>$request->name , 

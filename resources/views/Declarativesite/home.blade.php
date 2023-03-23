@@ -85,9 +85,12 @@
         <h2 style="text-align: center">Our On Prodacts</h2>
         <div class="row">
             @foreach ($Prodact_take as $items )
+            @foreach ($items->imageprodcus as $ite )
+                
+            @endforeach
             <div class="col-sm-3" style="width: 300px;margin-left: 50px">
                 <div class="card" style="margin-top: 50px">
-                    <img src="storage/{{ $items->image }}" class="card-img-top" width="250px" height="250px" alt="...">
+                    <img src="storage/{{ $ite->image }}" class="card-img-top" width="250px" height="250px" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"  style="text-align: center">{{$items->name}}</h5>
                         <p class="card-text">{{$items->title}}</p>
@@ -101,9 +104,12 @@
         <h2 style="text-align: center">New Prodacts</h2>
         <div class="row">
             @foreach ($Prodact as $items )
+            @foreach ($items->imageprodcus as $item )
+                
+            @endforeach
             <div class="col-sm-3" style="width: 300px;margin-left: 50px">
                 <div class="card" style="margin-top: 50px">
-                    <img src="storage/{{ $items->image }}" class="card-img-top" width="250px" height="250px" alt="...">
+                    <img src="storage/{{ $item->image}}" class="card-img-top" width="250px" height="250px" alt="...">
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center">{{$items->name}}</h5>
                         <p class="card-text">{{$items->title}}</p>
@@ -113,6 +119,5 @@
             @endforeach
         </div>
     </section>
-    
 </body>
 </html>

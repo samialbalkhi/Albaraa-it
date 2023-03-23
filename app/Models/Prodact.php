@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prodact extends Model
 {
     use HasFactory;
-    protected $fillable=['id','name','title','image','price','discount','brand_id','created_at','updated_at'];
+    protected $fillable=['id','name','title','price','discount','brand_id','created_at','updated_at'];
     protected $hidden=['created_at','updated_at'];
 
     public function brands()
@@ -19,6 +19,11 @@ class Prodact extends Model
     public function details()
     {
         return $this->hasMany(Detail::class,'prodact_id');
+    }
+
+    public function imageprodcus()
+    {
+        return $this->hasMany(ImageProdcu::class,'prodact_id');
     }
 }
 

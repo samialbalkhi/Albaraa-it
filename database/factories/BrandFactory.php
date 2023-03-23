@@ -18,7 +18,7 @@ class BrandFactory extends Factory
     {
         return [
             'name'=>fake()->name,
-            'section_id'=>4,
+            'section_id'=>1,
         ];
     }
 }

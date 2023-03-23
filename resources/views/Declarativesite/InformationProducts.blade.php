@@ -28,15 +28,20 @@
             text-align: right;
             margin-right: 200px;
         }
-        h2{
+
+        h2 {
             text-align: right;
             margin-right: 50px;
-            
+
         }
-        h3{
+
+        h3 {
             margin-right: 70px;
             margin-left: 100px;
 
+        }
+        .carousel-item{
+            margin-top: -80px;
         }
     </style>
 </head>
@@ -44,31 +49,48 @@
 <body>
     <header class="container">
         <div class="left ">
+
             
-                <div class="cards ">
-
-                    <div class="right">
-                        <div id="carouselExample" class="carousel slide">
-                            <div class="carousel-inner" style="width: 500px; height: 300px;">
-                                <div class="carousel-item active">
-
-                                    <img src="/storage/{{ $prodact->image }}"  class="card-img-top">
-
-                                </div>
-                            </div>
+            <div class="right">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner"  style="width: 600px; height: 300px;">
+                      @foreach ($prodactimage->imageprodcus as $prodacts  )
+                          
+                      <div class="carousel-item active" >
+                          
+                          <img src="/storage/{{ $prodacts->image }}" class="card-img-top">
+                          
+                          
                         </div>
-                      
+                        
+                        @endforeach
+                     
                     </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                      
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true">
+                          
+                    </span>
+                    
+                    <span class="visually-hidden">Next</span>
+                    
+                </button>
+            </div>
         </div>
-        </div>
+            
     </header>
     <section>
         <div class="container">
             <div class="card">
 
-                <h1>{{$prodact->name}}</h1>
-                <h1>{{$prodact->title}}</h1>
-                <h2>{{$prodact->price}} $</h2>
+                <h1>{{ $prodact->name }}</h1>
+                <h1>{{ $prodact->title }}</h1>
+                <h2>{{ $prodact->price }} $</h2>
             </div>
         </div>
     </section>
@@ -78,10 +100,8 @@
 
             <h1>ditals</h1>
             <h3>
-                @foreach ($prodact->details as $item )
-           
-            {{$item->details}}<br><br>
-              
+                @foreach ($prodact->details as $item)
+                    {{ $item->details }}<br><br>
                 @endforeach
             </h3>
 

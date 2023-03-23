@@ -31,7 +31,7 @@ class Product_request extends FormRequest
                 'price' => ['required', 'numeric'],
                 'discount' => ['nullable', 'numeric'],
                 'brand_id' => ['required', 'exists:brands,id'],
-                'image' => ['required', 'image'],
+                'image' => ['required'],
             ];
         } else {
             return [

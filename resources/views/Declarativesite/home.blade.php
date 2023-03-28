@@ -55,8 +55,9 @@
         <div class="right">
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner"  style="width: 600px; height: 300px;">
-                    @foreach ($baners as $items )
-                  <div class="carousel-item active" >
+                    @foreach ($baners as $items)
+                    
+                  <div class="carousel-item active">
 
                     <img src="storage/{{ $items->image }}" class="d-block w-100" alt="...">
                     

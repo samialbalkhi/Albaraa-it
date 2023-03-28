@@ -17,8 +17,8 @@ class HomeController extends Controller
 {
     public function view_home()
     {
-        $baners = Bnar::get();
-
+        $baners=Bnar::all();
+        
         $Prodact_take=Prodact::with('imageprodcus:id,image,prodact_id')->orderBy('id', 'ASC')
             ->take(4)
             ->get();
@@ -26,7 +26,7 @@ class HomeController extends Controller
         $Prodact =Prodact::with('imageprodcus:id,image,prodact_id')->latest()
             ->take(4)
             ->get();
-
+        // dd($baners);
         return view('Declarativesite.home', compact('Prodact', 'Prodact_take', 'baners'));
     }
     public function view_product()

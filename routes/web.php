@@ -25,6 +25,9 @@ use App\Models\Detail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/', function () {
+//     return view('Declarativesite.home');
+// });
 
 Route::middleware(['auth:admin'])->group(function () {
     //////////          Product       /////////////////////////

@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-
+    @livewireStyles
     <title>Document</title>
     <style>
         .navbar {
@@ -58,13 +58,9 @@
 </head>
 
 <body>
-    
     <nav class="navbar navbar-expand-lg" id="navbar">
-        <form class="form-inline my-2 my-lg-0" action="{{route('search')}}">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
         <div class="container-fluid">
+            <livewire:search/> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -209,6 +205,7 @@
           
     
     </script>
+     @livewireScripts
 </body>
 
 </html>

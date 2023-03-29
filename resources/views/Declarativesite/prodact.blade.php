@@ -204,8 +204,42 @@
     
           
     
-    </script>
-     @livewireScripts
-</body>
+        </script>
+{{-- {{$Prodact}} --}}
+     {{-- <?php --}}
+    //  if(isset($_GET['page']))
+    // {
+    //     $page = $_GET['page'];
+    // }
+    // else
+    // {
+    //     $page = 1;
+    // }
 
+    // $num_per_page = 02;
+    // $start_from = ($page-1)*02;
+    // $total_page = ceil($Prodact/$num_per_page);
+    // for($i=1;$i<=$total_pages;$i++)
+    // {
+
+    //     if($page>1)
+    //     {
+    //         echo "<a href='product.php?page=".($page-1)."' class='btn btn-danger'>Previous</a>";
+    //     }
+    // }
+
+                
+    //             for($i=1;$i<$total_page;$i++)
+    //             {
+    //                 echo "<a href='product.php?page=".$i."' class='btn btn-primary'>$i</a>";
+    //             }
+
+    //             if($i>$page)
+    //             {
+    //                 echo "<a href='product.php?page=".($page+1)."' class='btn btn-danger'>Next</a>";
+    //             }
+        
+    //     ?>
+        
+</body>
 </html>

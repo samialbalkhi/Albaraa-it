@@ -17,13 +17,15 @@ class HomeController extends Controller
 {
     public function view_home()
     {
-        $baners=Bnar::all();
-        
-        $Prodact_take=Prodact::with('imageprodcus:id,image,prodact_id')->orderBy('id', 'ASC')
+        $baners = Bnar::all();
+
+        $Prodact_take = Prodact::with('imageprodcus:id,image,prodact_id')
+            ->orderBy('id', 'ASC')
             ->take(4)
             ->get();
 
-        $Prodact =Prodact::with('imageprodcus:id,image,prodact_id')->latest()
+        $Prodact = Prodact::with('imageprodcus:id,image,prodact_id')
+            ->latest()
             ->take(4)
             ->get();
         // dd($baners);
@@ -56,7 +58,7 @@ class HomeController extends Controller
         $prodact = Prodact::with('details:id,details,prodact_id')->find($id);
         $prodactimage = Prodact::with('imageprodcus:id,image,prodact_id')->find($id);
 
-        return view('Declarativesite.InformationProducts', compact('prodact','prodactimage'));
+        return view('Declarativesite.InformationProducts', compact('prodact', 'prodactimage'));
     }
 
     public function get_section()
@@ -74,22 +76,16 @@ class HomeController extends Controller
         return view('Declarativesite.ToContactUs');
     }
 
-
     public function search(Request $request)
     {
+        $search = $request['Search'] ?? '';
 
-        $search =$request['Search'] ?? "";
+        if ($search != '') {
+            Prodact::where('name', '=', "%$search%")->get();
+        } else {
+            Prodact::all();
 
-        if($search !=""){
-            
-           Prodact::where('name','=',"%$search%")->get();    
-            
-         
-        }else{
-           Prodact::all();
-
-        return view('Declarativesite.search');
-            
+            return view('Declarativesite.search');
         }
         // $search_text=$_GET['search'];
         // $prodacts=Prodact::where('name','LIKE','%'.$search_text.'%')->get();
@@ -99,16 +95,15 @@ class HomeController extends Controller
 
     public function get_products()
     {
-        $Prodact =Prodact::with('imageprodcus:id,image,prodact_id')->latest()
-        ->take(4)
-        ->get();
+        $Prodact = Prodact::with('imageprodcus:id,image,prodact_id')
+            ->latest()
+            ->take(4)
+            ->get();
 
-           foreach($Prodact as $items){
-
-         foreach($items as $asd)
-
-         echo $asd ;
-         
-           }
-}
+        foreach ($Prodact as $items) {
+            foreach ($items as $asd) {
+                echo $asd;
+            }
+        }
+    }
 }

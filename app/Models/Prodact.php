@@ -25,5 +25,6 @@ class Prodact extends Model
     {
         return $this->hasMany(ImageProdcu::class,'prodact_id');
     }
+    
 }
 

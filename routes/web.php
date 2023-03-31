@@ -89,9 +89,9 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 /////////////////   home page       ///////////////////////////
-
+Route::middleware(['auth:web'])->group(function () {
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/home', 'view_home')->name('home');
+    Route::get('/home_sa', 'view_home')->name('home');
     Route::get('/product', 'view_product')->name('view_product');
     Route::get('/section_brand', 'section_brand')->name('section_brand');
     Route::get('/About_Us', 'About_Us')->name('About_Us');
@@ -103,3 +103,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/search','search')->name('search');
     Route::get('/get_products', 'get_products');
 });
+});
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');

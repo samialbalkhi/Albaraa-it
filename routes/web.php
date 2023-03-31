@@ -25,9 +25,9 @@ use App\Models\Detail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::get('/', function () {
-//     return view('Declarativesite.home');
-// });
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 Route::middleware(['auth:admin'])->group(function () {
     //////////          Product       /////////////////////////
@@ -91,7 +91,7 @@ Route::controller(LoginController::class)->group(function () {
 /////////////////   home page       ///////////////////////////
 Route::middleware(['auth:web'])->group(function () {
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/home_sa', 'view_home')->name('home');
+    Route::get('/home_sa', 'view_home')->name('home_sa');
     Route::get('/product', 'view_product')->name('view_product');
     Route::get('/section_brand', 'section_brand')->name('section_brand');
     Route::get('/About_Us', 'About_Us')->name('About_Us');
@@ -106,4 +106,4 @@ Route::controller(HomeController::class)->group(function () {
 });
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');

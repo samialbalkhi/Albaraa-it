@@ -42,6 +42,7 @@
     </style>
 </head>
 <body>
+    @csrf 
     <header class="container">
         <div class="left">
           <div class="cards">

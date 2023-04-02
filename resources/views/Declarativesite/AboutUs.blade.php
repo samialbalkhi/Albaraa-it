@@ -79,7 +79,7 @@
             <div class="left">
 
                 <ul class="list-group" style="width: 25%;">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('home_sa') }}">
                         <li class="list-group-item activ">Home</li>
                     </a>
                     <a href="{{ route('view_product') }}">

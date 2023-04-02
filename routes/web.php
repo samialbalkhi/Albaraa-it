@@ -13,6 +13,7 @@ use App\Http\Controllers\dashpord\ProfileConroller;
 use App\Http\Controllers\dashpord\ProductController;
 use App\Http\Controllers\dashpord\SectionController;
 use App\Http\Controllers\Declarativesite\HomeController;
+use App\Http\Controllers\Loginuser\LoginuserController;
 use App\Models\Detail;
 
 /*
@@ -25,9 +26,9 @@ use App\Models\Detail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Route::middleware(['auth:admin'])->group(function () {
     //////////          Product       /////////////////////////
@@ -89,7 +90,7 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 /////////////////   home page       ///////////////////////////
-Route::middleware(['auth:web'])->group(function () {
+// Route::middleware(['auth:web'])->group(function () {
 Route::controller(HomeController::class)->group(function () {
     Route::get('/home_sa', 'view_home')->name('home_sa');
     Route::get('/product', 'view_product')->name('view_product');
@@ -103,7 +104,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/search','search')->name('search');
     Route::get('/get_products', 'get_products');
 });
-});
-Auth::routes(['verify'=>true]);
+// });
+// Auth::routes(['verify'=>true]);
 
-Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+// Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home')->middleware('verified');
+Route::get('/login',[LoginuserController::class,'index'])->name('login');
+Route::get('/register',[LoginuserController::class,'register'])->name('register');
+Route::post('/create',[LoginuserController::class,'create'])->name('create');
+Route::post('/checkemail',[LoginuserController::class,'checkemail'])->name('checkemail');
